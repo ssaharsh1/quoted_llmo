@@ -555,7 +555,7 @@ const SidebarMenuButton = React.forwardRef<
     const Comp = asChild ? Slot : "button"
     const { isMobile, state } = useSidebar()
     const pathname = usePathname()
-    const isActive = props.children.props.href === pathname;
+    const isActive = React.isValidElement(props.children) && props.children.props?.href === pathname;
 
 
     const button = (
