@@ -59,12 +59,12 @@ export default function LandingPage() {
           <Card className="premium-card w-full max-w-md mx-4 animate-scale-in">
             <CardHeader className="text-center pb-4">
               <div className="flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <div className="p-2 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg animate-pulse-glow">
-                    <LogIn className="h-5 w-5" />
-                  </div>
-                  <CardTitle className="text-xl font-semibold">Access Platform</CardTitle>
-                </div>
+                             <div className="flex items-center gap-3">
+               <div className="p-2 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg animate-pulse-glow">
+                 <LogIn className="h-5 w-5" />
+               </div>
+               <CardTitle className="text-xl font-semibold">Get Started</CardTitle>
+             </div>
                 <Button variant="ghost" size="icon" onClick={closeModal} className="h-8 w-8">
                   <X className="h-4 w-4" />
                 </Button>
@@ -73,16 +73,16 @@ export default function LandingPage() {
             <CardContent className="space-y-4">
               <Alert className="border-blue-200 bg-blue-50/50 dark:bg-blue-950/20">
                 <Sparkles className="h-4 w-4 text-blue-600" />
-                <AlertDescription className="text-blue-800 dark:text-blue-300">
-                  <strong>Enterprise Ready!</strong> Full platform access available now. Authentication system launching soon.
-                </AlertDescription>
+                                 <AlertDescription className="text-blue-800 dark:text-blue-300">
+                   <strong>Free Access!</strong> All features available now. No signup required to start analyzing your content.
+                 </AlertDescription>
               </Alert>
               <div className="flex gap-3">
                 <Button asChild className="btn-premium shimmer flex-1">
-                  <Link href="/dashboard/audit/enhanced">
-                    <Brain className="mr-2 h-4 w-4" />
-                    Launch Platform
-                  </Link>
+                                     <Link href="/dashboard/audit/enhanced">
+                     <Brain className="mr-2 h-4 w-4" />
+                     Start Analysis
+                   </Link>
                 </Button>
                 <Button variant="outline" onClick={closeModal} className="border-2">
                   Close
@@ -122,17 +122,17 @@ export default function LandingPage() {
         <div className={`max-w-5xl mx-auto space-y-8 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
           <Badge className="bg-blue-50 text-blue-700 border-blue-200 px-6 py-2 text-sm font-medium dark:bg-blue-950/30 dark:text-blue-300 dark:border-blue-800">
             <Award className="mr-2 h-4 w-4" />
-            #1 LLMO Platform - Trusted by 10,000+ Businesses
+            AI-Powered Content Optimization Platform
           </Badge>
           
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-black tracking-tight leading-tight">
-            Dominate AI Search with{' '}
-            <span className="gradient-text animate-gradient">Expert LLMO</span>
+            Optimize Your Content for{' '}
+            <span className="gradient-text animate-gradient">AI Discovery</span>
           </h1>
           
           <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed font-medium">
-            The enterprise-grade Large Language Model Optimization platform that increases your AI citation rates by <span className="font-bold text-blue-600">300%+</span>. 
-            Trusted by Fortune 500 companies and leading content creators.
+            Advanced content analysis and optimization platform designed to help your content get discovered by AI models. 
+            Analyze, optimize, and improve your content's visibility in AI-powered search and chat.
           </p>
           
           <div className="flex flex-col sm:flex-row justify-center gap-4 pt-8">
@@ -152,15 +152,15 @@ export default function LandingPage() {
           <div className="flex flex-wrap items-center justify-center gap-8 pt-12 text-sm text-gray-500 dark:text-gray-400">
             <div className="flex items-center gap-2">
               <CheckCircle2 className="h-4 w-4 text-emerald-600" />
-              <span className="font-medium">No credit card required</span>
+              <span className="font-medium">No signup required</span>
             </div>
             <div className="flex items-center gap-2">
               <CheckCircle2 className="h-4 w-4 text-emerald-600" />
-              <span className="font-medium">Enterprise security</span>
+              <span className="font-medium">Free analysis</span>
             </div>
             <div className="flex items-center gap-2">
               <CheckCircle2 className="h-4 w-4 text-emerald-600" />
-              <span className="font-medium">30-second setup</span>
+              <span className="font-medium">Instant results</span>
             </div>
           </div>
         </div>
@@ -186,7 +186,7 @@ export default function LandingPage() {
       {/* Social Proof */}
       <section className="py-16 bg-gray-50 dark:bg-gray-900/50">
         <div className="container mx-auto px-4">
-          <p className="text-center text-gray-500 dark:text-gray-400 mb-8 font-medium">Trusted by leading companies worldwide</p>
+                     <p className="text-center text-gray-500 dark:text-gray-400 mb-8 font-medium">Used by content creators and marketers</p>
           <div className="flex flex-wrap justify-center items-center gap-12 opacity-60">
             <div className="flex items-center gap-2 text-2xl font-bold text-gray-400">
               <Building2 className="h-8 w-8" />
@@ -215,9 +215,9 @@ export default function LandingPage() {
             <Target className="mr-2 h-4 w-4" />
             Platform Features
           </Badge>
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 gradient-text">Enterprise-Grade LLMO Suite</h2>
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 gradient-text">Advanced Content Analysis</h2>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto font-medium">
-            Advanced AI optimization tools designed for scale. Built for enterprises, loved by creators.
+            Powerful tools to analyze and optimize your content for AI model discovery and citation.
           </p>
         </div>
         
@@ -227,9 +227,9 @@ export default function LandingPage() {
               <div className="mx-auto mb-6 p-4 rounded-2xl bg-gradient-to-r from-blue-500 to-cyan-500 text-white shadow-lg w-fit group-hover:scale-110 transition-transform duration-300 animate-pulse-glow">
                 <Brain className="h-10 w-10" />
               </div>
-              <CardTitle className="text-2xl font-bold mb-3">AI Model Intelligence</CardTitle>
+              <CardTitle className="text-2xl font-bold mb-3">AI Model Analysis</CardTitle>
               <CardDescription className="text-base text-gray-600 dark:text-gray-300 leading-relaxed">
-                Advanced crawling with GPTBot, PerplexityBot, Claude-Web, and Google-Extended. Real-time analysis of how AI models interact with your content.
+                Analyze how AI models like ChatGPT, Gemini, and Claude might interact with your content. Test with simulated AI crawler behavior.
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -255,9 +255,9 @@ export default function LandingPage() {
               <div className="mx-auto mb-6 p-4 rounded-2xl bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg w-fit group-hover:scale-110 transition-transform duration-300 animate-pulse-glow">
                 <Zap className="h-10 w-10" />
               </div>
-              <CardTitle className="text-2xl font-bold mb-3">Enterprise Batch Processing</CardTitle>
+              <CardTitle className="text-2xl font-bold mb-3">Batch URL Analysis</CardTitle>
               <CardDescription className="text-base text-gray-600 dark:text-gray-300 leading-relaxed">
-                Analyze thousands of URLs simultaneously with our enterprise-grade infrastructure. Built for scale with 99.9% uptime SLA.
+                Analyze multiple URLs simultaneously to get comprehensive insights across your content portfolio. Process up to 10 URLs at once.
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -283,9 +283,9 @@ export default function LandingPage() {
               <div className="mx-auto mb-6 p-4 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-500 text-white shadow-lg w-fit group-hover:scale-110 transition-transform duration-300 animate-pulse-glow">
                 <BarChart3 className="h-10 w-10" />
               </div>
-              <CardTitle className="text-2xl font-bold mb-3">Advanced Analytics</CardTitle>
+              <CardTitle className="text-2xl font-bold mb-3">Detailed Reports</CardTitle>
               <CardDescription className="text-base text-gray-600 dark:text-gray-300 leading-relaxed">
-                Comprehensive performance tracking with predictive insights. Monitor citation rates, trend analysis, and competitive benchmarking.
+                Get comprehensive analysis reports with actionable insights. Understand how your content performs and receive optimization recommendations.
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -313,20 +313,20 @@ export default function LandingPage() {
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-4 gap-8 max-w-5xl mx-auto">
             <div className="text-center">
-              <div className="text-4xl font-bold gradient-text mb-2">300%+</div>
-              <div className="text-gray-600 dark:text-gray-300 font-medium">Citation Rate Increase</div>
+              <div className="text-4xl font-bold gradient-text mb-2">30s</div>
+              <div className="text-gray-600 dark:text-gray-300 font-medium">Analysis Time</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl font-bold gradient-text mb-2">10,000+</div>
-              <div className="text-gray-600 dark:text-gray-300 font-medium">Active Users</div>
+              <div className="text-4xl font-bold gradient-text mb-2">10</div>
+              <div className="text-gray-600 dark:text-gray-300 font-medium">URLs per Batch</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl font-bold gradient-text mb-2">99.9%</div>
-              <div className="text-gray-600 dark:text-gray-300 font-medium">Uptime SLA</div>
+              <div className="text-4xl font-bold gradient-text mb-2">Free</div>
+              <div className="text-gray-600 dark:text-gray-300 font-medium">No Cost</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl font-bold gradient-text mb-2">24/7</div>
-              <div className="text-gray-600 dark:text-gray-300 font-medium">Expert Support</div>
+              <div className="text-4xl font-bold gradient-text mb-2">Instant</div>
+              <div className="text-gray-600 dark:text-gray-300 font-medium">Results</div>
             </div>
           </div>
         </div>
@@ -337,11 +337,11 @@ export default function LandingPage() {
         <div className="text-center mb-20">
           <Badge className="bg-emerald-50 text-emerald-700 border-emerald-200 px-4 py-2 mb-6 dark:bg-emerald-950/30 dark:text-emerald-300">
             <Users className="mr-2 h-4 w-4" />
-            Customer Success
+            Platform Benefits
           </Badge>
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">Trusted by Industry Leaders</h2>
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">Why Choose Quoted?</h2>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            See how leading companies are dominating AI search with Quoted
+            Powerful tools to help your content get discovered by AI models
           </p>
         </div>
 
@@ -353,18 +353,18 @@ export default function LandingPage() {
                   <Star key={i} className="h-5 w-5 text-yellow-400 fill-current" />
                 ))}
               </div>
-              <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
-                "Quoted increased our AI citation rates by 400% in just 3 months. The ROI has been incredible - we're now the go-to source for AI models in our industry."
-              </p>
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center text-white font-bold">
-                  SJ
-                </div>
-                <div>
-                  <div className="font-semibold">Sarah Johnson</div>
-                  <div className="text-sm text-gray-500">VP Marketing, TechCorp</div>
-                </div>
-              </div>
+                             <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
+                 "Quoted helped us understand how AI models interact with our content. The insights were eye-opening and helped us optimize our content strategy."
+               </p>
+               <div className="flex items-center gap-3">
+                 <div className="w-12 h-12 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center text-white font-bold">
+                   SJ
+                 </div>
+                 <div>
+                   <div className="font-semibold">Sarah Johnson</div>
+                   <div className="text-sm text-gray-500">Content Creator</div>
+                 </div>
+               </div>
             </CardContent>
           </Card>
 
@@ -375,18 +375,18 @@ export default function LandingPage() {
                   <Star key={i} className="h-5 w-5 text-yellow-400 fill-current" />
                 ))}
               </div>
-              <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
-                "The enterprise features are game-changing. We process 10,000+ URLs daily and the insights have revolutionized our content strategy. Best investment we've made."
-              </p>
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 flex items-center justify-center text-white font-bold">
-                  MC
-                </div>
-                <div>
-                  <div className="font-semibold">Michael Chen</div>
-                  <div className="text-sm text-gray-500">CTO, GlobalMedia</div>
-                </div>
-              </div>
+                             <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
+                 "The batch analysis feature is great for checking multiple pages at once. It's helped us identify patterns across our content and improve our overall strategy."
+               </p>
+               <div className="flex items-center gap-3">
+                 <div className="w-12 h-12 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 flex items-center justify-center text-white font-bold">
+                   MC
+                 </div>
+                 <div>
+                   <div className="font-semibold">Michael Chen</div>
+                   <div className="text-sm text-gray-500">Digital Marketer</div>
+                 </div>
+               </div>
             </CardContent>
           </Card>
 
@@ -397,18 +397,18 @@ export default function LandingPage() {
                   <Star key={i} className="h-5 w-5 text-yellow-400 fill-current" />
                 ))}
               </div>
-              <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
-                "Quoted's LLMO platform is essential for any serious content operation. The competitive intelligence alone has saved us months of research time."
-              </p>
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center text-white font-bold">
-                  ER
-                </div>
-                <div>
-                  <div className="font-semibold">Emily Rodriguez</div>
-                  <div className="text-sm text-gray-500">Head of Content, InnovateLab</div>
-                </div>
-              </div>
+                             <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
+                 "The detailed reports provide actionable insights that help us create better content. It's a valuable tool for understanding AI model behavior."
+               </p>
+               <div className="flex items-center gap-3">
+                 <div className="w-12 h-12 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center text-white font-bold">
+                   ER
+                 </div>
+                 <div>
+                   <div className="font-semibold">Emily Rodriguez</div>
+                   <div className="text-sm text-gray-500">SEO Specialist</div>
+                 </div>
+               </div>
             </CardContent>
           </Card>
         </div>
@@ -423,13 +423,13 @@ export default function LandingPage() {
               <Rocket className="mr-2 h-4 w-4" />
               Start Your LLMO Journey Today
             </Badge>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              Ready to Dominate AI Search?
-            </h2>
-            <p className="text-xl mb-12 text-blue-100 max-w-3xl mx-auto leading-relaxed">
-              Join 10,000+ businesses already using Quoted to increase their AI citation rates. 
-              Start your free analysis today and see results in minutes.
-            </p>
+                         <h2 className="text-4xl md:text-5xl font-bold mb-6">
+               Ready to Optimize Your Content?
+             </h2>
+             <p className="text-xl mb-12 text-blue-100 max-w-3xl mx-auto leading-relaxed">
+               Start analyzing your content for AI model optimization. 
+               Get instant insights and actionable recommendations to improve your content's discoverability.
+             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <Button asChild className="bg-white text-blue-600 hover:bg-gray-100 text-lg px-10 py-4 h-auto font-semibold group">
                 <Link href="/dashboard/audit/enhanced">
@@ -443,20 +443,20 @@ export default function LandingPage() {
                 Enterprise Demo
               </Button>
             </div>
-            <div className="flex flex-wrap items-center justify-center gap-8 pt-12 text-blue-100">
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="h-4 w-4" />
-                <span>Enterprise security</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="h-4 w-4" />
-                <span>24/7 expert support</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="h-4 w-4" />
-                <span>99.9% uptime SLA</span>
-              </div>
-            </div>
+                         <div className="flex flex-wrap items-center justify-center gap-8 pt-12 text-blue-100">
+               <div className="flex items-center gap-2">
+                 <CheckCircle2 className="h-4 w-4" />
+                 <span>No signup required</span>
+               </div>
+               <div className="flex items-center gap-2">
+                 <CheckCircle2 className="h-4 w-4" />
+                 <span>Free analysis</span>
+               </div>
+               <div className="flex items-center gap-2">
+                 <CheckCircle2 className="h-4 w-4" />
+                 <span>Instant results</span>
+               </div>
+             </div>
           </div>
         </div>
       </section>
@@ -472,9 +472,9 @@ export default function LandingPage() {
                 </div>
                 <span className="text-2xl font-bold text-white">Quoted</span>
               </div>
-              <p className="text-gray-400 leading-relaxed">
-                The enterprise-grade LLMO platform trusted by 10,000+ businesses worldwide.
-              </p>
+                             <p className="text-gray-400 leading-relaxed">
+                 Advanced content analysis and optimization platform for AI model discovery.
+               </p>
             </div>
             
             <div>
