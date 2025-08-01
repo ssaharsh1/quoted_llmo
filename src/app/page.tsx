@@ -51,15 +51,7 @@ export default function LandingPage() {
     <div className="min-h-screen bg-white dark:bg-gray-950 overflow-hidden">
       {/* Background Effects */}
       <div className="fixed inset-0 particles-bg pointer-events-none" />
-      <div className="fixed inset-0 hero-gradient pointer-events-none" />
-      
-      {/* Floating Geometric Elements */}
-      <div className="fixed inset-0 pointer-events-none overflow-hidden">
-        <div className="floating-element animate-float top-20 left-1/4 w-2 h-2 bg-blue-400/20 rounded-full" />
-        <div className="floating-element animate-float top-1/3 right-1/4 w-1 h-1 bg-purple-400/30 rounded-full" />
-        <div className="floating-element animate-float bottom-1/3 left-1/3 w-3 h-3 bg-emerald-400/15 rounded-full" />
-        <div className="floating-element animate-float top-1/2 right-1/3 w-1.5 h-1.5 bg-blue-400/25 rounded-full" />
-      </div>
+      <div className="fixed inset-0 hero-bg pointer-events-none" />
       
       {/* Login Modal */}
       {showLoginModal && (
@@ -144,15 +136,15 @@ export default function LandingPage() {
           </p>
           
           <div className="flex flex-col sm:flex-row justify-center gap-4 pt-8">
-            <Button asChild className="btn-premium shimmer text-lg px-10 py-4 group h-auto animate-glow-pulse magnetic">
+            <Button asChild className="btn-premium shimmer text-lg px-10 py-4 group h-auto">
               <Link href="/dashboard/audit/enhanced">
-                <Rocket className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
+                <Rocket className="mr-2 h-5 w-5" />
                 Start Free Analysis
-                <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-2 transition-transform duration-300" />
+                <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </Link>
             </Button>
-            <Button variant="outline" className="text-lg px-10 py-4 h-auto border-2 hover:bg-gray-50 dark:hover:bg-gray-800 magnetic group">
-              <Play className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
+            <Button variant="outline" className="text-lg px-10 py-4 h-auto border-2 hover:bg-gray-50 dark:hover:bg-gray-800">
+              <Play className="mr-2 h-5 w-5" />
               Watch Demo
             </Button>
           </div>
@@ -173,31 +165,30 @@ export default function LandingPage() {
           </div>
         </div>
 
-        {/* Enhanced Floating Elements */}
-        <div className="absolute top-20 left-10 animate-float animate-glow-pulse">
-          <div className="p-3 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 magnetic">
+        {/* Floating Elements */}
+        <div className="absolute top-20 left-10 animate-float">
+          <div className="p-3 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 shadow-lg">
             <Brain className="h-6 w-6" />
           </div>
         </div>
-        <div className="absolute top-32 right-10 animate-float animate-bounce-subtle" style={{ animationDelay: '2s' }}>
-          <div className="p-3 rounded-full bg-purple-100 dark:bg-purple-900/30 text-purple-600 magnetic">
-            <Zap className="h-6 w-6 animate-rotate-slow" />
+        <div className="absolute top-32 right-10 animate-float" style={{ animationDelay: '2s' }}>
+          <div className="p-3 rounded-full bg-purple-100 dark:bg-purple-900/30 text-purple-600 shadow-lg">
+            <Zap className="h-6 w-6" />
           </div>
         </div>
-        <div className="absolute bottom-20 left-20 animate-float animate-glow-pulse" style={{ animationDelay: '4s' }}>
-          <div className="p-3 rounded-full bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 magnetic">
+        <div className="absolute bottom-20 left-20 animate-float" style={{ animationDelay: '4s' }}>
+          <div className="p-3 rounded-full bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 shadow-lg">
             <TrendingUp className="h-6 w-6" />
           </div>
         </div>
-        <div className="absolute top-1/2 right-20 animate-bounce-subtle" style={{ animationDelay: '1s' }}>
-          <div className="p-2 rounded-full bg-gradient-to-r from-blue-400 to-purple-400 text-white opacity-70">
-            <Sparkles className="h-4 w-4" />
-          </div>
-        </div>
+        
+        {/* Additional subtle background elements */}
+        <div className="absolute top-1/2 right-1/4 w-32 h-32 bg-gradient-to-br from-blue-100/20 to-purple-100/20 dark:from-blue-900/10 dark:to-purple-900/10 rounded-full blur-xl animate-float" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute bottom-1/3 left-1/3 w-24 h-24 bg-gradient-to-br from-emerald-100/20 to-teal-100/20 dark:from-emerald-900/10 dark:to-teal-900/10 rounded-full blur-xl animate-float" style={{ animationDelay: '3s' }}></div>
       </section>
 
             {/* What is LLMO Section */}
-      <section id="llmo" className="py-24 bg-white dark:bg-gray-950">
+      <section id="llmo" className="py-24 bg-white dark:bg-gray-950 geometric-bg">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-16">
@@ -333,7 +324,7 @@ export default function LandingPage() {
       </section>
 
       {/* Features Section */}
-      <section id="features" className="container mx-auto px-4 py-24">
+      <section id="features" className="container mx-auto px-4 py-24 orb-bg">
         <div className="text-center mb-20">
           <Badge className="bg-blue-50 text-blue-700 border-blue-200 px-4 py-2 mb-6 dark:bg-blue-950/30 dark:text-blue-300">
             <Target className="mr-2 h-4 w-4" />
@@ -435,29 +426,29 @@ export default function LandingPage() {
       {/* Stats Section */}
       <section className="py-20 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-950/20 dark:to-purple-950/20">
         <div className="container mx-auto px-4">
-                  <div className="grid md:grid-cols-4 gap-8 max-w-5xl mx-auto">
-          <div className="text-center group">
-            <div className="text-4xl font-bold gradient-text mb-2 text-glow group-hover:scale-110 transition-transform duration-300">30s</div>
-            <div className="text-gray-600 dark:text-gray-300 font-medium">Analysis Time</div>
+          <div className="grid md:grid-cols-4 gap-8 max-w-5xl mx-auto">
+            <div className="text-center">
+              <div className="text-4xl font-bold gradient-text mb-2">30s</div>
+              <div className="text-gray-600 dark:text-gray-300 font-medium">Analysis Time</div>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl font-bold gradient-text mb-2">10</div>
+              <div className="text-gray-600 dark:text-gray-300 font-medium">URLs per Batch</div>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl font-bold gradient-text mb-2">Free</div>
+              <div className="text-gray-600 dark:text-gray-300 font-medium">No Cost</div>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl font-bold gradient-text mb-2">Instant</div>
+              <div className="text-gray-600 dark:text-gray-300 font-medium">Results</div>
+            </div>
           </div>
-          <div className="text-center group">
-            <div className="text-4xl font-bold gradient-text mb-2 text-glow group-hover:scale-110 transition-transform duration-300">10</div>
-            <div className="text-gray-600 dark:text-gray-300 font-medium">URLs per Batch</div>
-          </div>
-          <div className="text-center group">
-            <div className="text-4xl font-bold gradient-text mb-2 text-glow group-hover:scale-110 transition-transform duration-300">Free</div>
-            <div className="text-gray-600 dark:text-gray-300 font-medium">No Cost</div>
-          </div>
-          <div className="text-center group">
-            <div className="text-4xl font-bold gradient-text mb-2 text-glow group-hover:scale-110 transition-transform duration-300">Instant</div>
-            <div className="text-gray-600 dark:text-gray-300 font-medium">Results</div>
-          </div>
-        </div>
         </div>
       </section>
 
       {/* Testimonials */}
-      <section id="testimonials" className="container mx-auto px-4 py-24">
+      <section id="testimonials" className="container mx-auto px-4 py-24 grid-bg">
         <div className="text-center mb-20">
           <Badge className="bg-emerald-50 text-emerald-700 border-emerald-200 px-4 py-2 mb-6 dark:bg-emerald-950/30 dark:text-emerald-300">
             <Users className="mr-2 h-4 w-4" />
