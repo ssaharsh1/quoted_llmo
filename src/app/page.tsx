@@ -51,7 +51,15 @@ export default function LandingPage() {
     <div className="min-h-screen bg-white dark:bg-gray-950 overflow-hidden">
       {/* Background Effects */}
       <div className="fixed inset-0 particles-bg pointer-events-none" />
-      <div className="fixed inset-0 hero-bg pointer-events-none" />
+      <div className="fixed inset-0 hero-gradient pointer-events-none" />
+      
+      {/* Floating Geometric Elements */}
+      <div className="fixed inset-0 pointer-events-none overflow-hidden">
+        <div className="floating-element animate-float top-20 left-1/4 w-2 h-2 bg-blue-400/20 rounded-full" />
+        <div className="floating-element animate-float top-1/3 right-1/4 w-1 h-1 bg-purple-400/30 rounded-full" />
+        <div className="floating-element animate-float bottom-1/3 left-1/3 w-3 h-3 bg-emerald-400/15 rounded-full" />
+        <div className="floating-element animate-float top-1/2 right-1/3 w-1.5 h-1.5 bg-blue-400/25 rounded-full" />
+      </div>
       
       {/* Login Modal */}
       {showLoginModal && (
@@ -127,7 +135,7 @@ export default function LandingPage() {
           
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-black tracking-tight leading-tight">
             Optimize Your Content for{' '}
-            <span className="holographic-text">AI Discovery</span>
+            <span className="gradient-text animate-gradient">AI Discovery</span>
           </h1>
           
           <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed font-medium">
@@ -136,15 +144,15 @@ export default function LandingPage() {
           </p>
           
           <div className="flex flex-col sm:flex-row justify-center gap-4 pt-8">
-            <Button asChild className="btn-morph text-lg px-10 py-4 group h-auto">
+            <Button asChild className="btn-premium shimmer text-lg px-10 py-4 group h-auto animate-glow-pulse magnetic">
               <Link href="/dashboard/audit/enhanced">
-                <Rocket className="mr-2 h-5 w-5" />
+                <Rocket className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
                 Start Free Analysis
-                <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-2 transition-transform duration-300" />
               </Link>
             </Button>
-            <Button variant="outline" className="btn-neon text-lg px-10 py-4 h-auto">
-              <Play className="mr-2 h-5 w-5" />
+            <Button variant="outline" className="text-lg px-10 py-4 h-auto border-2 hover:bg-gray-50 dark:hover:bg-gray-800 magnetic group">
+              <Play className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
               Watch Demo
             </Button>
           </div>
@@ -165,35 +173,25 @@ export default function LandingPage() {
           </div>
         </div>
 
-        {/* Advanced Floating Elements */}
-        <div className="absolute top-20 left-10 animate-float">
-          <div className="p-3 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 animate-pulse-glow">
+        {/* Enhanced Floating Elements */}
+        <div className="absolute top-20 left-10 animate-float animate-glow-pulse">
+          <div className="p-3 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 magnetic">
             <Brain className="h-6 w-6" />
           </div>
         </div>
-        <div className="absolute top-32 right-10 animate-float" style={{ animationDelay: '2s' }}>
-          <div className="p-3 rounded-full bg-purple-100 dark:bg-purple-900/30 text-purple-600 animate-pulse-glow">
-            <Zap className="h-6 w-6" />
+        <div className="absolute top-32 right-10 animate-float animate-bounce-subtle" style={{ animationDelay: '2s' }}>
+          <div className="p-3 rounded-full bg-purple-100 dark:bg-purple-900/30 text-purple-600 magnetic">
+            <Zap className="h-6 w-6 animate-rotate-slow" />
           </div>
         </div>
-        <div className="absolute bottom-20 left-20 animate-float" style={{ animationDelay: '4s' }}>
-          <div className="p-3 rounded-full bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 animate-pulse-glow">
+        <div className="absolute bottom-20 left-20 animate-float animate-glow-pulse" style={{ animationDelay: '4s' }}>
+          <div className="p-3 rounded-full bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 magnetic">
             <TrendingUp className="h-6 w-6" />
           </div>
         </div>
-        <div className="absolute top-40 left-1/4 animate-float" style={{ animationDelay: '1s' }}>
-          <div className="p-2 rounded-full bg-pink-100 dark:bg-pink-900/30 text-pink-600 animate-sparkle">
+        <div className="absolute top-1/2 right-20 animate-bounce-subtle" style={{ animationDelay: '1s' }}>
+          <div className="p-2 rounded-full bg-gradient-to-r from-blue-400 to-purple-400 text-white opacity-70">
             <Sparkles className="h-4 w-4" />
-          </div>
-        </div>
-        <div className="absolute bottom-40 right-1/4 animate-float" style={{ animationDelay: '3s' }}>
-          <div className="p-2 rounded-full bg-yellow-100 dark:bg-yellow-900/30 text-yellow-600 animate-sparkle">
-            <Star className="h-4 w-4" />
-          </div>
-        </div>
-        <div className="absolute top-1/2 left-1/3 animate-float" style={{ animationDelay: '5s' }}>
-          <div className="p-2 rounded-full bg-cyan-100 dark:bg-cyan-900/30 text-cyan-600 animate-sparkle">
-            <Target className="h-4 w-4" />
           </div>
         </div>
       </section>
@@ -348,7 +346,7 @@ export default function LandingPage() {
         </div>
         
         <div className="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto">
-          <Card className="holographic-card group cursor-pointer animate-fade-in-up floating-card">
+          <Card className="premium-card group cursor-pointer animate-fade-in-up">
             <CardHeader className="text-center pb-4">
               <div className="mx-auto mb-6 p-4 rounded-2xl bg-gradient-to-r from-blue-500 to-cyan-500 text-white shadow-lg w-fit group-hover:scale-110 transition-transform duration-300 animate-pulse-glow">
                 <Brain className="h-10 w-10" />
@@ -376,7 +374,7 @@ export default function LandingPage() {
             </CardContent>
           </Card>
           
-          <Card className="holographic-card group cursor-pointer animate-fade-in-up floating-card" style={{ animationDelay: '0.2s' }}>
+          <Card className="premium-card group cursor-pointer animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
             <CardHeader className="text-center pb-4">
               <div className="mx-auto mb-6 p-4 rounded-2xl bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg w-fit group-hover:scale-110 transition-transform duration-300 animate-pulse-glow">
                 <Zap className="h-10 w-10" />
@@ -404,7 +402,7 @@ export default function LandingPage() {
             </CardContent>
           </Card>
           
-          <Card className="holographic-card group cursor-pointer animate-fade-in-up floating-card" style={{ animationDelay: '0.4s' }}>
+          <Card className="premium-card group cursor-pointer animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
             <CardHeader className="text-center pb-4">
               <div className="mx-auto mb-6 p-4 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-500 text-white shadow-lg w-fit group-hover:scale-110 transition-transform duration-300 animate-pulse-glow">
                 <BarChart3 className="h-10 w-10" />
@@ -438,20 +436,20 @@ export default function LandingPage() {
       <section className="py-20 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-950/20 dark:to-purple-950/20">
         <div className="container mx-auto px-4">
                   <div className="grid md:grid-cols-4 gap-8 max-w-5xl mx-auto">
-          <div className="text-center animate-bounce-in" style={{ animationDelay: '0.1s' }}>
-            <div className="text-4xl font-bold neon-text mb-2">30s</div>
+          <div className="text-center group">
+            <div className="text-4xl font-bold gradient-text mb-2 text-glow group-hover:scale-110 transition-transform duration-300">30s</div>
             <div className="text-gray-600 dark:text-gray-300 font-medium">Analysis Time</div>
           </div>
-          <div className="text-center animate-bounce-in" style={{ animationDelay: '0.2s' }}>
-            <div className="text-4xl font-bold neon-text mb-2">10</div>
+          <div className="text-center group">
+            <div className="text-4xl font-bold gradient-text mb-2 text-glow group-hover:scale-110 transition-transform duration-300">10</div>
             <div className="text-gray-600 dark:text-gray-300 font-medium">URLs per Batch</div>
           </div>
-          <div className="text-center animate-bounce-in" style={{ animationDelay: '0.3s' }}>
-            <div className="text-4xl font-bold neon-text mb-2">Free</div>
+          <div className="text-center group">
+            <div className="text-4xl font-bold gradient-text mb-2 text-glow group-hover:scale-110 transition-transform duration-300">Free</div>
             <div className="text-gray-600 dark:text-gray-300 font-medium">No Cost</div>
           </div>
-          <div className="text-center animate-bounce-in" style={{ animationDelay: '0.4s' }}>
-            <div className="text-4xl font-bold neon-text mb-2">Instant</div>
+          <div className="text-center group">
+            <div className="text-4xl font-bold gradient-text mb-2 text-glow group-hover:scale-110 transition-transform duration-300">Instant</div>
             <div className="text-gray-600 dark:text-gray-300 font-medium">Results</div>
           </div>
         </div>
@@ -472,7 +470,7 @@ export default function LandingPage() {
         </div>
 
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          <Card className="holographic-card floating-card">
+          <Card className="premium-card">
             <CardContent className="p-8">
               <div className="flex mb-4">
                 {[...Array(5)].map((_, i) => (
@@ -494,47 +492,47 @@ export default function LandingPage() {
             </CardContent>
           </Card>
 
-                    <Card className="holographic-card floating-card">
+          <Card className="premium-card">
             <CardContent className="p-8">
               <div className="flex mb-4">
                 {[...Array(5)].map((_, i) => (
                   <Star key={i} className="h-5 w-5 text-yellow-400 fill-current" />
                 ))}
               </div>
-              <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
-                "The batch analysis feature is great for checking multiple pages at once. It's helped us identify patterns across our content and improve our overall strategy."
-              </p>
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 flex items-center justify-center text-white font-bold">
-                  MC
-                </div>
-                <div>
-                  <div className="font-semibold">Michael Chen</div>
-                  <div className="text-sm text-gray-500">Digital Marketer</div>
-                </div>
-              </div>
+                             <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
+                 "The batch analysis feature is great for checking multiple pages at once. It's helped us identify patterns across our content and improve our overall strategy."
+               </p>
+               <div className="flex items-center gap-3">
+                 <div className="w-12 h-12 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 flex items-center justify-center text-white font-bold">
+                   MC
+                 </div>
+                 <div>
+                   <div className="font-semibold">Michael Chen</div>
+                   <div className="text-sm text-gray-500">Digital Marketer</div>
+                 </div>
+               </div>
             </CardContent>
           </Card>
 
-                    <Card className="holographic-card floating-card">
+          <Card className="premium-card">
             <CardContent className="p-8">
               <div className="flex mb-4">
                 {[...Array(5)].map((_, i) => (
                   <Star key={i} className="h-5 w-5 text-yellow-400 fill-current" />
                 ))}
               </div>
-              <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
-                "The detailed reports provide actionable insights that help us create better content. It's a valuable tool for understanding AI model behavior."
-              </p>
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center text-white font-bold">
-                  ER
-                </div>
-                <div>
-                  <div className="font-semibold">Emily Rodriguez</div>
-                  <div className="text-sm text-gray-500">SEO Specialist</div>
-                </div>
-              </div>
+                             <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
+                 "The detailed reports provide actionable insights that help us create better content. It's a valuable tool for understanding AI model behavior."
+               </p>
+               <div className="flex items-center gap-3">
+                 <div className="w-12 h-12 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center text-white font-bold">
+                   ER
+                 </div>
+                 <div>
+                   <div className="font-semibold">Emily Rodriguez</div>
+                   <div className="text-sm text-gray-500">SEO Specialist</div>
+                 </div>
+               </div>
             </CardContent>
           </Card>
         </div>

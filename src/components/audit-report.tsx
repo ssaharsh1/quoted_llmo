@@ -87,11 +87,11 @@ export function AuditReport({ result }: AuditReportProps) {
       <Card className="shadow-lg border-2">
         <CardHeader>
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
+          <div className="flex items-center gap-4">
               <div className="p-3 rounded-full bg-primary/10">
                 <TrendingUp className="h-8 w-8 text-primary" />
               </div>
-              <div>
+            <div>
                 <CardTitle className="text-3xl font-bold">
                   LLMO Score: <span className={getScoreColor(result.overall_score)}>
                     {result.overall_score}/100
@@ -123,14 +123,14 @@ export function AuditReport({ result }: AuditReportProps) {
         <TabsContent value="categories" className="space-y-4">
           {Object.entries(result.categories).map(([key, category]) => (
             <Card key={key} className="shadow-md">
-              <CardHeader>
+        <CardHeader>
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3">
                     {getCategoryIcon(key)}
                     <div>
                       <CardTitle className="text-xl capitalize">
                         {category.name}
-                      </CardTitle>
+            </CardTitle>
                       <div className="flex items-center gap-2 mt-1">
                         {getStatusIcon(category.status)}
                         <span className={`font-semibold ${getScoreColor(category.score)}`}>
@@ -140,9 +140,9 @@ export function AuditReport({ result }: AuditReportProps) {
                     </div>
                   </div>
                   <Progress value={category.score} className="w-24 h-2" />
-                </div>
-              </CardHeader>
-              <CardContent>
+          </div>
+        </CardHeader>
+        <CardContent>
                 <div className="space-y-4">
                   {/* Individual Checks */}
                   <div className="grid gap-2">
@@ -172,9 +172,9 @@ export function AuditReport({ result }: AuditReportProps) {
                           <li key={index} className="flex items-start gap-2">
                             <Target className="h-4 w-4 mt-1 text-primary shrink-0" />
                             <span className="text-sm">{rec}</span>
-                          </li>
-                        ))}
-                      </ul>
+              </li>
+            ))}
+          </ul>
                     </div>
                   )}
                 </div>
@@ -255,8 +255,8 @@ export function AuditReport({ result }: AuditReportProps) {
                     <Target className="h-5 w-5 text-blue-500 mt-1 shrink-0" />
                     <span>{opportunity}</span>
                   </div>
-                </CardContent>
-              </Card>
+        </CardContent>
+      </Card>
             ))}
           </div>
         </TabsContent>

@@ -964,7 +964,7 @@ export default function OptimizePage() {
                         <div className="bg-muted p-4 rounded-lg text-sm border max-w-full overflow-hidden">
                           <pre className="whitespace-pre-wrap break-words overflow-wrap-anywhere text-xs sm:text-sm max-h-96 overflow-y-auto">
                             <code className="break-words font-mono">{item.code}</code>
-                          </pre>
+                        </pre>
                         </div>
                       </div>
 
