@@ -95,9 +95,16 @@ Quoted is a comprehensive SaaS platform designed to help content creators, marke
 
 3. **Set up environment variables**:
    ```bash
-   cp .env.example .env.local
-   # Add your Google AI API key and other configurations
+   # Create .env.local file
+   touch .env.local
    ```
+   
+   Add your Google AI API key to `.env.local`:
+   ```
+   GOOGLE_AI_API_KEY=your_google_ai_api_key_here
+   ```
+   
+   Get your API key from [Google AI Studio](https://aistudio.google.com/app/apikey)
 
 4. **Run the development server**:
    ```bash

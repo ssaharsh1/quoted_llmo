@@ -78,6 +78,15 @@ Structure the response as a JSON object with the specified schema.`,
 
 export async function POST(request: NextRequest) {
   try {
+    // Check if API key is configured
+    if (!process.env.GOOGLE_AI_API_KEY) {
+      console.error('AI Improvements Error: GOOGLE_AI_API_KEY not configured');
+      return NextResponse.json(
+        { error: 'AI service not configured. Please add GOOGLE_AI_API_KEY to your environment variables.' },
+        { status: 500 }
+      );
+    }
+
     const body = await request.json();
     const validatedData = AIImprovementsSchema.parse(body);
     
@@ -116,8 +125,24 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(result.output.improvements);
   } catch (error) {
     console.error('AI Improvements Error:', error);
+    
+    // Provide more specific error messages
+    let errorMessage = 'Failed to generate AI improvements';
+    
+    if (error instanceof Error) {
+      if (error.message.includes('API key')) {
+        errorMessage = 'AI service not configured. Please check your API key setup.';
+      } else if (error.message.includes('rate limit')) {
+        errorMessage = 'AI service is temporarily busy. Please try again in a few minutes.';
+      } else if (error.message.includes('network')) {
+        errorMessage = 'Network error. Please check your connection and try again.';
+      } else {
+        errorMessage = `AI service error: ${error.message}`;
+      }
+    }
+    
     return NextResponse.json(
-      { error: 'Failed to generate AI improvements' },
+      { error: errorMessage },
       { status: 500 }
     );
   }
