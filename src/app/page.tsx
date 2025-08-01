@@ -104,9 +104,9 @@ export default function LandingPage() {
           </Link>
           
           <nav className="hidden md:flex items-center gap-8">
+            <a href="#llmo" className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors font-medium">What is LLMO</a>
             <a href="#features" className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors font-medium">Features</a>
             <a href="#testimonials" className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors font-medium">Testimonials</a>
-            <a href="#pricing" className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors font-medium">Pricing</a>
           </nav>
           
           <Button onClick={handleLoginClick} className="btn-premium shimmer group">
@@ -184,7 +184,7 @@ export default function LandingPage() {
       </section>
 
             {/* What is LLMO Section */}
-      <section className="py-24 bg-white dark:bg-gray-950">
+      <section id="llmo" className="py-24 bg-white dark:bg-gray-950">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-16">
