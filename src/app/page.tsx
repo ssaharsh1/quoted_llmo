@@ -183,10 +183,121 @@ export default function LandingPage() {
         </div>
       </section>
 
+            {/* What is LLMO Section */}
+      <section className="py-24 bg-white dark:bg-gray-950">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-16">
+              <Badge className="bg-purple-50 text-purple-700 border-purple-200 px-4 py-2 mb-6 dark:bg-purple-950/30 dark:text-purple-300">
+                <Brain className="mr-2 h-4 w-4" />
+                Understanding LLMO
+              </Badge>
+              <h2 className="text-4xl md:text-5xl font-bold mb-6">What is Large Language Model Optimization?</h2>
+              <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+                The next evolution of content optimization for the AI era
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              <div className="space-y-6">
+                <div className="space-y-4">
+                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white">Beyond Traditional SEO</h3>
+                  <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                    While SEO focuses on ranking in search engines, LLMO optimizes your content specifically for AI models like ChatGPT, Gemini, Claude, and Perplexity. These models are becoming the primary way people discover and consume information.
+                  </p>
+                </div>
+
+                <div className="space-y-4">
+                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white">Why LLMO Matters</h3>
+                  <div className="space-y-3">
+                    <div className="flex items-start gap-3">
+                      <div className="w-6 h-6 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center mt-1">
+                        <span className="text-blue-600 text-sm font-bold">1</span>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-gray-900 dark:text-white">AI-First Discovery</h4>
+                        <p className="text-sm text-gray-600 dark:text-gray-300">When people ask AI models questions, your content needs to be optimized to be cited and recommended.</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <div className="w-6 h-6 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center mt-1">
+                        <span className="text-purple-600 text-sm font-bold">2</span>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-gray-900 dark:text-white">Credibility & Authority</h4>
+                        <p className="text-sm text-gray-600 dark:text-gray-300">AI models prioritize authoritative, well-structured content that provides clear value to users.</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <div className="w-6 h-6 rounded-full bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center mt-1">
+                        <span className="text-emerald-600 text-sm font-bold">3</span>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-gray-900 dark:text-white">Future-Proof Strategy</h4>
+                        <p className="text-sm text-gray-600 dark:text-gray-300">As AI becomes the primary interface for information, LLMO ensures your content remains discoverable.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="space-y-6">
+                <Card className="premium-card">
+                  <CardContent className="p-6">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="p-2 rounded-lg bg-gradient-to-r from-blue-500 to-purple-500 text-white">
+                        <Target className="h-5 w-5" />
+                      </div>
+                      <h3 className="text-lg font-semibold">Key LLMO Principles</h3>
+                    </div>
+                    <div className="space-y-3">
+                      <div className="flex items-center gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-emerald-600" />
+                        <span className="text-sm font-medium">Clear, authoritative content structure</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-emerald-600" />
+                        <span className="text-sm font-medium">Comprehensive topic coverage</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-emerald-600" />
+                        <span className="text-sm font-medium">Credible sourcing and citations</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-emerald-600" />
+                        <span className="text-sm font-medium">User-focused value delivery</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-emerald-600" />
+                        <span className="text-sm font-medium">Technical accessibility for AI crawlers</span>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="premium-card">
+                  <CardContent className="p-6">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="p-2 rounded-lg bg-gradient-to-r from-emerald-500 to-teal-500 text-white">
+                        <TrendingUp className="h-5 w-5" />
+                      </div>
+                      <h3 className="text-lg font-semibold">The AI Revolution</h3>
+                    </div>
+                    <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+                      With over 100 million ChatGPT users and growing, AI models are becoming the primary way people search for and consume information. Traditional SEO strategies need to evolve to include LLMO for complete digital visibility.
+                    </p>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Social Proof */}
       <section className="py-16 bg-gray-50 dark:bg-gray-900/50">
         <div className="container mx-auto px-4">
-                     <p className="text-center text-gray-500 dark:text-gray-400 mb-8 font-medium">Used by content creators and marketers</p>
+          <p className="text-center text-gray-500 dark:text-gray-400 mb-8 font-medium">Used by content creators and marketers</p>
           <div className="flex flex-wrap justify-center items-center gap-12 opacity-60">
             <div className="flex items-center gap-2 text-2xl font-bold text-gray-400">
               <Building2 className="h-8 w-8" />
