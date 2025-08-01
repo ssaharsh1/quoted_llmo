@@ -298,30 +298,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Social Proof */}
-      <section className="py-16 bg-gray-50 dark:bg-gray-900/50">
-        <div className="container mx-auto px-4">
-          <p className="text-center text-gray-500 dark:text-gray-400 mb-8 font-medium">Used by content creators and marketers</p>
-          <div className="flex flex-wrap justify-center items-center gap-12 opacity-60">
-            <div className="flex items-center gap-2 text-2xl font-bold text-gray-400">
-              <Building2 className="h-8 w-8" />
-              <span>TechCorp</span>
-            </div>
-            <div className="flex items-center gap-2 text-2xl font-bold text-gray-400">
-              <Globe className="h-8 w-8" />
-              <span>GlobalMedia</span>
-            </div>
-            <div className="flex items-center gap-2 text-2xl font-bold text-gray-400">
-              <Lightbulb className="h-8 w-8" />
-              <span>InnovateLab</span>
-            </div>
-            <div className="flex items-center gap-2 text-2xl font-bold text-gray-400">
-              <Activity className="h-8 w-8" />
-              <span>DataFlow</span>
-            </div>
-          </div>
-        </div>
-      </section>
+
 
       {/* Features Section */}
       <section id="features" className="container mx-auto px-4 py-24 orb-bg">
@@ -545,19 +522,15 @@ export default function LandingPage() {
                Start analyzing your content for AI model optimization. 
                Get instant insights and actionable recommendations to improve your content's discoverability.
              </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <Button asChild className="bg-white text-blue-600 hover:bg-gray-100 text-lg px-10 py-4 h-auto font-semibold group">
-                <Link href="/dashboard/audit/enhanced">
-                  <Brain className="mr-2 h-5 w-5" />
-                  Start Free Analysis
-                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                </Link>
-              </Button>
-              <Button variant="outline" className="border-white/30 text-white hover:bg-white/10 text-lg px-10 py-4 h-auto">
-                <Shield className="mr-2 h-5 w-5" />
-                Enterprise Demo
-              </Button>
-            </div>
+                         <div className="flex justify-center">
+               <Button asChild className="bg-white text-blue-600 hover:bg-gray-100 text-lg px-10 py-4 h-auto font-semibold group">
+                 <Link href="/dashboard/audit/enhanced">
+                   <Brain className="mr-2 h-5 w-5" />
+                   Start Free Analysis
+                   <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                 </Link>
+               </Button>
+             </div>
                          <div className="flex flex-wrap items-center justify-center gap-8 pt-12 text-blue-100">
                <div className="flex items-center gap-2">
                  <CheckCircle2 className="h-4 w-4" />
