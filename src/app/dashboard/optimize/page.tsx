@@ -813,27 +813,27 @@ Allow: /`,
 
 const getDifficultyColor = (difficulty: 'easy' | 'medium' | 'hard') => {
   switch (difficulty) {
-    case 'easy': return 'bg-green-100 text-green-800 border-green-300';
-    case 'medium': return 'bg-yellow-100 text-yellow-800 border-yellow-300';
-    case 'hard': return 'bg-red-100 text-red-800 border-red-300';
+    case 'easy': return 'bg-green-100 text-green-800 border-green-300 dark:bg-green-900/30 dark:text-green-300 dark:border-green-700';
+    case 'medium': return 'bg-yellow-100 text-yellow-800 border-yellow-300 dark:bg-yellow-900/30 dark:text-yellow-300 dark:border-yellow-700';
+    case 'hard': return 'bg-red-100 text-red-800 border-red-300 dark:bg-red-900/30 dark:text-red-300 dark:border-red-700';
   }
 };
 
 const getImpactColor = (impact: 'low' | 'medium' | 'high') => {
   switch (impact) {
-    case 'low': return 'bg-gray-100 text-gray-800 border-gray-300';
-    case 'medium': return 'bg-blue-100 text-blue-800 border-blue-300';
-    case 'high': return 'bg-purple-100 text-purple-800 border-purple-300';
+    case 'low': return 'bg-gray-100 text-gray-800 border-gray-300 dark:bg-gray-900/30 dark:text-gray-300 dark:border-gray-700';
+    case 'medium': return 'bg-blue-100 text-blue-800 border-blue-300 dark:bg-blue-900/30 dark:text-blue-300 dark:border-blue-700';
+    case 'high': return 'bg-purple-100 text-purple-800 border-purple-300 dark:bg-purple-900/30 dark:text-purple-300 dark:border-purple-700';
   }
 };
 
 const getCategoryColor = (color: string) => {
   const colors = {
-    blue: 'border-blue-200 bg-blue-50',
-    green: 'border-green-200 bg-green-50',
-    purple: 'border-purple-200 bg-purple-50',
-    orange: 'border-orange-200 bg-orange-50',
-    pink: 'border-pink-200 bg-pink-50',
+    blue: 'border-blue-200 bg-blue-50 dark:border-blue-700 dark:bg-blue-950/30',
+    green: 'border-green-200 bg-green-50 dark:border-green-700 dark:bg-green-950/30',
+    purple: 'border-purple-200 bg-purple-50 dark:border-purple-700 dark:bg-purple-950/30',
+    orange: 'border-orange-200 bg-orange-50 dark:border-orange-700 dark:bg-orange-950/30',
+    pink: 'border-pink-200 bg-pink-50 dark:border-pink-700 dark:bg-pink-950/30',
   };
   return colors[color as keyof typeof colors] || colors.blue;
 };
@@ -870,10 +870,10 @@ export default function OptimizePage() {
             {optimizationCategories.map((category, index) => {
               const IconComponent = category.icon;
               return (
-                <div key={category.id} className={`p-4 rounded-lg border-2 ${getCategoryColor(category.color)}`}>
+                <div key={category.id} className={`p-4 rounded-lg border-2 ${getCategoryColor(category.color)} hover:shadow-md transition-shadow`}>
                   <div className="flex items-center gap-2 mb-2">
-                    <IconComponent className="h-5 w-5" />
-                    <span className="font-semibold text-sm">{category.title}</span>
+                    <IconComponent className="h-5 w-5 text-primary" />
+                    <span className="font-semibold text-sm text-foreground">{category.title}</span>
                   </div>
                   <p className="text-xs text-muted-foreground">{category.description}</p>
                   <Badge variant="outline" className="mt-2 text-xs">
@@ -888,13 +888,10 @@ export default function OptimizePage() {
 
       {/* Main Content Tabs */}
       <Tabs defaultValue="technical" className="w-full max-w-full">
-        <TabsList className="grid w-full grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-1">
+        <TabsList className="flex w-full overflow-x-auto gap-1 p-1">
           {optimizationCategories.map((category) => (
-            <TabsTrigger key={category.id} value={category.id} className="text-xs sm:text-sm px-2 py-1">
-              <span className="hidden sm:inline">{category.title}</span>
-              <span className="sm:hidden">
-                {category.title.split(' ')[0]}
-              </span>
+            <TabsTrigger key={category.id} value={category.id} className="text-xs sm:text-sm px-3 py-2 whitespace-nowrap flex-shrink-0">
+              {category.title}
             </TabsTrigger>
           ))}
         </TabsList>
@@ -903,15 +900,15 @@ export default function OptimizePage() {
           <TabsContent key={category.id} value={category.id} className="space-y-6 max-w-full">
             <div className="grid gap-6 max-w-full">
               {category.items.map((item, index) => (
-                <Card key={index} className="shadow-md w-full max-w-full overflow-hidden">
-                  <CardHeader>
+                <Card key={index} className="shadow-md w-full max-w-full overflow-hidden border-2 hover:border-primary/50 transition-colors">
+                  <CardHeader className="bg-muted/30 dark:bg-muted/10">
                     <div className="flex items-start justify-between">
                       <div className="flex-1">
-                        <CardTitle className="text-xl flex items-center gap-3">
+                        <CardTitle className="text-xl flex items-center gap-3 text-foreground">
                           <Target className="h-5 w-5 text-primary" />
                           {item.title}
                         </CardTitle>
-                        <CardDescription className="mt-2">
+                        <CardDescription className="mt-2 text-muted-foreground">
                           {item.description}
                         </CardDescription>
                       </div>
@@ -961,17 +958,17 @@ export default function OptimizePage() {
                             Copy
                           </Button>
                         </div>
-                        <div className="bg-muted p-4 rounded-lg text-sm border max-w-full overflow-hidden">
-                          <pre className="whitespace-pre-wrap break-words overflow-wrap-anywhere text-xs sm:text-sm max-h-96 overflow-y-auto">
+                        <div className="bg-muted p-4 rounded-lg text-sm border max-w-full overflow-hidden dark:bg-gray-900 dark:border-gray-700">
+                          <pre className="whitespace-pre-wrap break-words overflow-wrap-anywhere text-xs sm:text-sm max-h-96 overflow-y-auto text-foreground">
                             <code className="break-words font-mono">{item.code}</code>
                         </pre>
                         </div>
                       </div>
 
                       {/* Quick Tips */}
-                      <Alert className="border-blue-200 bg-blue-50">
-                        <Zap className="h-4 w-4 text-blue-600" />
-                        <AlertDescription className="text-blue-800">
+                      <Alert className="border-blue-200 bg-blue-50 dark:border-blue-700 dark:bg-blue-950/30">
+                        <Zap className="h-4 w-4 text-blue-600 dark:text-blue-400" />
+                        <AlertDescription className="text-blue-800 dark:text-blue-200">
                           <strong>Pro Tip:</strong> Test your implementation using tools like Google's Rich Results Test, 
                           Schema Markup Validator, and your browser's developer tools to ensure everything works correctly.
                         </AlertDescription>
