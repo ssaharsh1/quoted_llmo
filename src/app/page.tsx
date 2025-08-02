@@ -51,6 +51,11 @@ export default function LandingPage() {
     <div className="min-h-screen bg-black text-white overflow-hidden">
       {/* Background Effects */}
       <div className="fixed inset-0 pointer-events-none">
+        {/* Flowing Blue Ribbon */}
+        <div className="flowing-ribbon">
+          <div className="ribbon-shape"></div>
+        </div>
+        
         {/* Abstract blue shapes */}
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-br from-blue-400/30 to-blue-600/20 rounded-full blur-3xl animate-float"></div>
         <div className="absolute top-1/3 right-1/4 w-80 h-80 bg-gradient-to-br from-blue-500/25 to-purple-500/15 rounded-full blur-3xl animate-float" style={{ animationDelay: '1s' }}></div>
