@@ -48,43 +48,47 @@ export default function LandingPage() {
   };
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-950 overflow-hidden">
+    <div className="min-h-screen bg-black text-white overflow-hidden">
       {/* Background Effects */}
-      <div className="fixed inset-0 particles-bg pointer-events-none" />
-      <div className="fixed inset-0 hero-bg pointer-events-none" />
+      <div className="fixed inset-0 pointer-events-none">
+        {/* Abstract blue shapes */}
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-br from-blue-400/30 to-blue-600/20 rounded-full blur-3xl animate-float"></div>
+        <div className="absolute top-1/3 right-1/4 w-80 h-80 bg-gradient-to-br from-blue-500/25 to-purple-500/15 rounded-full blur-3xl animate-float" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute bottom-1/4 left-1/3 w-72 h-72 bg-gradient-to-br from-blue-300/20 to-cyan-500/15 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }}></div>
+      </div>
       
       {/* Login Modal */}
       {showLoginModal && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm">
-          <Card className="premium-card w-full max-w-md mx-4 animate-scale-in">
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm">
+          <Card className="bg-gray-900 border-gray-700 w-full max-w-md mx-4 animate-scale-in">
             <CardHeader className="text-center pb-4">
               <div className="flex items-center justify-between">
-                             <div className="flex items-center gap-3">
-               <div className="p-2 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg animate-pulse-glow">
-                 <LogIn className="h-5 w-5" />
-               </div>
-               <CardTitle className="text-xl font-semibold">Get Started</CardTitle>
-             </div>
-                <Button variant="ghost" size="icon" onClick={closeModal} className="h-8 w-8">
+                <div className="flex items-center gap-3">
+                  <div className="p-2 rounded-xl bg-blue-600 text-white shadow-lg">
+                    <LogIn className="h-5 w-5" />
+                  </div>
+                  <CardTitle className="text-xl font-semibold text-white">Get Started</CardTitle>
+                </div>
+                <Button variant="ghost" size="icon" onClick={closeModal} className="h-8 w-8 text-white hover:bg-gray-800">
                   <X className="h-4 w-4" />
                 </Button>
               </div>
             </CardHeader>
             <CardContent className="space-y-4">
-              <Alert className="border-blue-200 bg-blue-50/50 dark:bg-blue-950/20">
-                <Sparkles className="h-4 w-4 text-blue-600" />
-                                 <AlertDescription className="text-blue-800 dark:text-blue-300">
-                   <strong>Free Access!</strong> All features available now. No signup required to start analyzing your content.
-                 </AlertDescription>
+              <Alert className="border-blue-600 bg-blue-950/20">
+                <Sparkles className="h-4 w-4 text-blue-400" />
+                <AlertDescription className="text-blue-200">
+                  <strong>Free Access!</strong> All features available now. No signup required to start analyzing your content.
+                </AlertDescription>
               </Alert>
               <div className="flex gap-3">
-                <Button asChild className="btn-premium shimmer flex-1">
-                                     <Link href="/dashboard/audit/enhanced">
-                     <Brain className="mr-2 h-4 w-4" />
-                     Start Analysis
-                   </Link>
+                <Button asChild className="bg-blue-600 hover:bg-blue-700 text-white flex-1">
+                  <Link href="/dashboard/audit/enhanced">
+                    <Brain className="mr-2 h-4 w-4" />
+                    Start Analysis
+                  </Link>
                 </Button>
-                <Button variant="outline" onClick={closeModal} className="border-2">
+                <Button variant="outline" onClick={closeModal} className="border-gray-600 text-white hover:bg-gray-800">
                   Close
                 </Button>
               </div>
@@ -94,110 +98,70 @@ export default function LandingPage() {
       )}
 
       {/* Header */}
-      <header className="sticky top-0 z-50 w-full border-b bg-white/80 dark:bg-gray-950/80 backdrop-blur-xl">
+      <header className="sticky top-0 z-50 w-full border-b border-gray-800 bg-black/80 backdrop-blur-xl">
         <div className="container mx-auto flex h-16 items-center justify-between px-4">
           <Link href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
-            <div className="p-2 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg animate-pulse-glow">
-              <Sparkles className="h-6 w-6" />
+            <div className="flex items-center gap-2">
+              <span className="text-blue-400 font-bold">//</span>
+              <span className="text-2xl font-bold text-white">Quoted</span>
             </div>
-            <span className="text-2xl font-bold gradient-text">Quoted</span>
           </Link>
           
           <nav className="hidden md:flex items-center gap-8">
-            <a href="#llmo" className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors font-medium">What is LLMO</a>
-            <a href="#features" className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors font-medium">Features</a>
-            <a href="#testimonials" className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors font-medium">Testimonials</a>
+            <a href="#llmo" className="text-white hover:text-gray-300 transition-colors font-medium">WHAT IS LLMO</a>
+            <a href="#features" className="text-white hover:text-gray-300 transition-colors font-medium">FEATURES</a>
           </nav>
           
-          <Button onClick={handleLoginClick} className="btn-premium shimmer group">
-            <LogIn className="mr-2 h-4 w-4" />
-            Get Started
-            <ArrowRight className="ml-2 h-3 w-3 group-hover:translate-x-1 transition-transform" />
-          </Button>
+          <div className="flex items-center gap-4">
+            <a href="#pricing" className="text-white hover:text-gray-300 transition-colors font-medium">PRICING</a>
+            <Button onClick={handleLoginClick} className="bg-white text-black hover:bg-gray-100 border border-gray-300 px-6 py-2 rounded-lg font-medium">
+              SIGN UP
+            </Button>
+          </div>
         </div>
       </header>
 
       {/* Hero Section */}
       <section className="container mx-auto px-4 py-20 lg:py-32 text-center relative">
         <div className={`max-w-5xl mx-auto space-y-8 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
-          <Badge className="bg-blue-50 text-blue-700 border-blue-200 px-6 py-2 text-sm font-medium dark:bg-blue-950/30 dark:text-blue-300 dark:border-blue-800">
+          <Badge className="bg-blue-950/30 text-blue-300 border-blue-600 px-6 py-2 text-sm font-medium">
             <Award className="mr-2 h-4 w-4" />
-            AI-Powered Content Optimization Platform
+            AI-POWERED CONTENT OPTIMIZATION PLATFORM
           </Badge>
           
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-black tracking-tight leading-tight">
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-black tracking-tight leading-tight text-white">
             Optimize Your Content for{' '}
-            <span className="gradient-text animate-gradient">AI Discovery</span>
+            <span className="text-blue-400">AI Discovery</span>
           </h1>
           
-          <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed font-medium">
-            Advanced content analysis and optimization platform designed to help your content get discovered by AI models. 
-            Analyze, optimize, and improve your content's visibility in AI-powered search and chat.
+          <p className="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed font-medium">
+            Advanced content analysis and optimization platform designed to help your content get discovered by AI models.
           </p>
           
-          <div className="flex flex-col sm:flex-row justify-center gap-4 pt-8">
-            <Button asChild className="btn-premium shimmer text-lg px-10 py-4 group h-auto">
+          <div className="flex justify-center pt-8">
+            <Button asChild className="bg-blue-600 hover:bg-blue-700 text-white text-lg px-10 py-4 h-auto font-semibold group">
               <Link href="/dashboard/audit/enhanced">
-                <Rocket className="mr-2 h-5 w-5" />
-                Start Free Analysis
+                <Brain className="mr-2 h-5 w-5" />
+                START FREE ANALYSIS
                 <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </Link>
             </Button>
-            <Button variant="outline" className="text-lg px-10 py-4 h-auto border-2 hover:bg-gray-50 dark:hover:bg-gray-800">
-              <Play className="mr-2 h-5 w-5" />
-              Watch Demo
-            </Button>
-          </div>
-          
-          <div className="flex flex-wrap items-center justify-center gap-8 pt-12 text-sm text-gray-500 dark:text-gray-400">
-            <div className="flex items-center gap-2">
-              <CheckCircle2 className="h-4 w-4 text-emerald-600" />
-              <span className="font-medium">No signup required</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <CheckCircle2 className="h-4 w-4 text-emerald-600" />
-              <span className="font-medium">Free analysis</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <CheckCircle2 className="h-4 w-4 text-emerald-600" />
-              <span className="font-medium">Instant results</span>
-            </div>
           </div>
         </div>
 
-        {/* Floating Elements */}
-        <div className="absolute top-20 left-10 animate-float">
-          <div className="p-3 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 shadow-lg">
-            <Brain className="h-6 w-6" />
-          </div>
-        </div>
-        <div className="absolute top-32 right-10 animate-float" style={{ animationDelay: '2s' }}>
-          <div className="p-3 rounded-full bg-purple-100 dark:bg-purple-900/30 text-purple-600 shadow-lg">
-            <Zap className="h-6 w-6" />
-          </div>
-        </div>
-        <div className="absolute bottom-20 left-20 animate-float" style={{ animationDelay: '4s' }}>
-          <div className="p-3 rounded-full bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 shadow-lg">
-            <TrendingUp className="h-6 w-6" />
-          </div>
-        </div>
-        
-        {/* Additional subtle background elements */}
-        <div className="absolute top-1/2 right-1/4 w-32 h-32 bg-gradient-to-br from-blue-100/20 to-purple-100/20 dark:from-blue-900/10 dark:to-purple-900/10 rounded-full blur-xl animate-float" style={{ animationDelay: '1s' }}></div>
-        <div className="absolute bottom-1/3 left-1/3 w-24 h-24 bg-gradient-to-br from-emerald-100/20 to-teal-100/20 dark:from-emerald-900/10 dark:to-teal-900/10 rounded-full blur-xl animate-float" style={{ animationDelay: '3s' }}></div>
       </section>
 
-            {/* What is LLMO Section */}
-      <section id="llmo" className="py-24 bg-white dark:bg-gray-950 geometric-bg">
+      {/* What is LLMO Section */}
+      <section id="llmo" className="py-24 bg-black">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-16">
-              <Badge className="bg-purple-50 text-purple-700 border-purple-200 px-4 py-2 mb-6 dark:bg-purple-950/30 dark:text-purple-300">
+              <Badge className="bg-purple-950/30 text-purple-300 border-purple-600 px-4 py-2 mb-6">
                 <Brain className="mr-2 h-4 w-4" />
                 Understanding LLMO
               </Badge>
-              <h2 className="text-4xl md:text-5xl font-bold mb-6">What is Large Language Model Optimization?</h2>
-              <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">What is Large Language Model Optimization?</h2>
+              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
                 The next evolution of content optimization for the AI era
               </p>
             </div>
@@ -205,40 +169,40 @@ export default function LandingPage() {
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div className="space-y-6">
                 <div className="space-y-4">
-                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white">Beyond Traditional SEO</h3>
-                  <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                  <h3 className="text-2xl font-bold text-white">Beyond Traditional SEO</h3>
+                  <p className="text-gray-300 leading-relaxed">
                     While SEO focuses on ranking in search engines, LLMO optimizes your content specifically for AI models like ChatGPT, Gemini, Claude, and Perplexity. These models are becoming the primary way people discover and consume information.
                   </p>
                 </div>
 
                 <div className="space-y-4">
-                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white">Why LLMO Matters</h3>
+                  <h3 className="text-2xl font-bold text-white">Why LLMO Matters</h3>
                   <div className="space-y-3">
                     <div className="flex items-start gap-3">
-                      <div className="w-6 h-6 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center mt-1">
-                        <span className="text-blue-600 text-sm font-bold">1</span>
+                      <div className="w-6 h-6 rounded-full bg-blue-900/30 flex items-center justify-center mt-1">
+                        <span className="text-blue-400 text-sm font-bold">1</span>
                       </div>
                       <div>
-                        <h4 className="font-semibold text-gray-900 dark:text-white">AI-First Discovery</h4>
-                        <p className="text-sm text-gray-600 dark:text-gray-300">When people ask AI models questions, your content needs to be optimized to be cited and recommended.</p>
+                        <h4 className="font-semibold text-white">AI-First Discovery</h4>
+                        <p className="text-sm text-gray-300">When people ask AI models questions, your content needs to be optimized to be cited and recommended.</p>
                       </div>
                     </div>
                     <div className="flex items-start gap-3">
-                      <div className="w-6 h-6 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center mt-1">
-                        <span className="text-purple-600 text-sm font-bold">2</span>
+                      <div className="w-6 h-6 rounded-full bg-purple-900/30 flex items-center justify-center mt-1">
+                        <span className="text-purple-400 text-sm font-bold">2</span>
                       </div>
                       <div>
-                        <h4 className="font-semibold text-gray-900 dark:text-white">Credibility & Authority</h4>
-                        <p className="text-sm text-gray-600 dark:text-gray-300">AI models prioritize authoritative, well-structured content that provides clear value to users.</p>
+                        <h4 className="font-semibold text-white">Credibility & Authority</h4>
+                        <p className="text-sm text-gray-300">AI models prioritize authoritative, well-structured content that provides clear value to users.</p>
                       </div>
                     </div>
                     <div className="flex items-start gap-3">
-                      <div className="w-6 h-6 rounded-full bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center mt-1">
-                        <span className="text-emerald-600 text-sm font-bold">3</span>
+                      <div className="w-6 h-6 rounded-full bg-emerald-900/30 flex items-center justify-center mt-1">
+                        <span className="text-emerald-400 text-sm font-bold">3</span>
                       </div>
                       <div>
-                        <h4 className="font-semibold text-gray-900 dark:text-white">Future-Proof Strategy</h4>
-                        <p className="text-sm text-gray-600 dark:text-gray-300">As AI becomes the primary interface for information, LLMO ensures your content remains discoverable.</p>
+                        <h4 className="font-semibold text-white">Future-Proof Strategy</h4>
+                        <p className="text-sm text-gray-300">As AI becomes the primary interface for information, LLMO ensures your content remains discoverable.</p>
                       </div>
                     </div>
                   </div>
@@ -246,34 +210,34 @@ export default function LandingPage() {
               </div>
 
               <div className="space-y-6">
-                <Card className="premium-card">
+                <Card className="bg-gray-900 border-gray-700">
                   <CardContent className="p-6">
                     <div className="flex items-center gap-3 mb-4">
-                      <div className="p-2 rounded-lg bg-gradient-to-r from-blue-500 to-purple-500 text-white">
+                      <div className="p-2 rounded-lg bg-blue-600 text-white">
                         <Target className="h-5 w-5" />
                       </div>
-                      <h3 className="text-lg font-semibold">Key LLMO Principles</h3>
+                      <h3 className="text-lg font-semibold text-white">Key LLMO Principles</h3>
                     </div>
                     <div className="space-y-3">
                       <div className="flex items-center gap-2">
-                        <CheckCircle2 className="h-4 w-4 text-emerald-600" />
-                        <span className="text-sm font-medium">Clear, authoritative content structure</span>
+                        <CheckCircle2 className="h-4 w-4 text-emerald-400" />
+                        <span className="text-sm font-medium text-gray-300">Clear, authoritative content structure</span>
                       </div>
                       <div className="flex items-center gap-2">
-                        <CheckCircle2 className="h-4 w-4 text-emerald-600" />
-                        <span className="text-sm font-medium">Comprehensive topic coverage</span>
+                        <CheckCircle2 className="h-4 w-4 text-emerald-400" />
+                        <span className="text-sm font-medium text-gray-300">Comprehensive topic coverage</span>
                       </div>
                       <div className="flex items-center gap-2">
-                        <CheckCircle2 className="h-4 w-4 text-emerald-600" />
-                        <span className="text-sm font-medium">Credible sourcing and citations</span>
+                        <CheckCircle2 className="h-4 w-4 text-emerald-400" />
+                        <span className="text-sm font-medium text-gray-300">Credible sourcing and citations</span>
                       </div>
                       <div className="flex items-center gap-2">
-                        <CheckCircle2 className="h-4 w-4 text-emerald-600" />
-                        <span className="text-sm font-medium">User-focused value delivery</span>
+                        <CheckCircle2 className="h-4 w-4 text-emerald-400" />
+                        <span className="text-sm font-medium text-gray-300">User-focused value delivery</span>
                       </div>
                       <div className="flex items-center gap-2">
-                        <CheckCircle2 className="h-4 w-4 text-emerald-600" />
-                        <span className="text-sm font-medium">Technical accessibility for AI crawlers</span>
+                        <CheckCircle2 className="h-4 w-4 text-emerald-400" />
+                        <span className="text-sm font-medium text-gray-300">Technical accessibility for AI crawlers</span>
                       </div>
                     </div>
                   </CardContent>

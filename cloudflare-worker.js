@@ -2,6 +2,9 @@ addEventListener('fetch', event => {
   event.respondWith(handleRequest(event.request));
 });
 
+// Simple in-memory cache for rate limiting
+const requestCache = new Map();
+
 async function handleRequest(request) {
   const { searchParams } = new URL(request.url);
   const postUrl = searchParams.get('url');
@@ -9,6 +12,18 @@ async function handleRequest(request) {
 
   if (!postUrl) {
     return jsonError("Missing 'url' parameter", 400);
+  }
+
+  // Rate limiting check
+  const clientIP = request.headers.get('cf-connecting-ip') || 'unknown';
+  const cacheKey = `${clientIP}:${postUrl}`;
+  const now = Date.now();
+  const cacheEntry = requestCache.get(cacheKey);
+  
+  if (cacheEntry && (now - cacheEntry.timestamp) < 60000) { // 1 minute cache
+    return new Response(JSON.stringify(cacheEntry.data), { 
+      headers: { 'Content-Type': 'application/json', 'X-Cache': 'HIT' }
+    });
   }
 
   /* 1️⃣ — Enhanced AI-aware user agents for LLMO */
@@ -30,12 +45,27 @@ async function handleRequest(request) {
   };
 
   try {
-    /* 2️⃣ — Follow redirects */
+    /* 2️⃣ — Follow redirects with timeout */
     let current = postUrl;
     const chain = [];
     let res;
+    const startTime = Date.now();
+    const timeout = 15000; // 15 second timeout
+    
     while (true) {
-      res = await fetch(current, { headers, redirect: 'manual' });
+      if (Date.now() - startTime > timeout) {
+        throw new Error('Request timeout');
+      }
+      
+      res = await fetch(current, { 
+        headers, 
+        redirect: 'manual',
+        cf: {
+          cacheTtl: 300, // Cache for 5 minutes
+          cacheEverything: true
+        }
+      });
+      
       chain.push({ url: current, status: res.status });
       if (res.status >= 300 && res.status < 400 && res.headers.get('location')) {
         current = new URL(res.headers.get('location'), current).href;
@@ -43,12 +73,21 @@ async function handleRequest(request) {
     }
     if (!res.ok) throw new Error(`Request failed with status ${res.status}`);
 
-    /* 3️⃣ — Grab HTML */
+    /* 3️⃣ — Grab HTML with size limit */
     const html = await res.text();
+    
+    // Check HTML size to prevent memory issues
+    if (html.length > 500000) { // 500KB limit
+      throw new Error('HTML content too large for analysis');
+    }
+    
     const origin = new URL(postUrl).origin;
 
     /* 4️⃣ — Check llms.txt availability */
-    const llmsResp = await fetch(`${origin}/llms.txt`, { headers });
+    const llmsResp = await fetch(`${origin}/llms.txt`, { 
+      headers,
+      cf: { cacheTtl: 3600 } // Cache for 1 hour
+    });
     const llmsStatus = llmsResp.ok ? 'found' : 'not_found';
 
     /* 5️⃣ — Enhanced meta tag extraction */
@@ -197,7 +236,27 @@ async function handleRequest(request) {
       llmoAnalysis
     };
 
-    return new Response(JSON.stringify(payload), { headers: { 'Content-Type': 'application/json' }});
+    // Cache the result
+    requestCache.set(cacheKey, {
+      timestamp: now,
+      data: payload
+    });
+
+    // Clean up old cache entries (keep only last 1000 entries)
+    if (requestCache.size > 1000) {
+      const entries = Array.from(requestCache.entries());
+      entries.sort((a, b) => a[1].timestamp - b[1].timestamp);
+      const toDelete = entries.slice(0, entries.length - 1000);
+      toDelete.forEach(([key]) => requestCache.delete(key));
+    }
+
+    return new Response(JSON.stringify(payload), { 
+      headers: { 
+        'Content-Type': 'application/json',
+        'X-Cache': 'MISS',
+        'X-Processing-Time': `${Date.now() - startTime}ms`
+      }
+    });
 
   } catch (err) {
     return jsonError(err.message, 500);
@@ -213,7 +272,10 @@ function jsonError(msg, code) {
 
 async function safeText(url, headers) {
   try {
-    const r = await fetch(url, { headers });
+    const r = await fetch(url, { 
+      headers,
+      cf: { cacheTtl: 3600 } // Cache for 1 hour
+    });
     return r.ok ? await r.text() : 'NOT FOUND';
   } catch {
     return 'ERROR';
