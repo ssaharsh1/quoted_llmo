@@ -7,8 +7,6 @@ import {
   Zap,
   ChartNoAxesColumnIncreasing,
   User,
-  Moon,
-  Sun,
   Bell
 } from 'lucide-react';
 import {
@@ -26,6 +24,7 @@ import {
 import { QuotedIcon } from '@/components/icons';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { ThemeToggle } from '@/components/theme-toggle';
 import Link from 'next/link';
 
 const navigationItems = [
@@ -59,8 +58,8 @@ export default function DashboardLayout({
 }) {
   return (
     <SidebarProvider>
-      <Sidebar className="border-r-0 bg-gradient-to-b from-sidebar-background to-sidebar-background/50 backdrop-blur-xl">
-        <SidebarHeader className="border-b border-border/50 bg-gradient-to-r from-primary/5 to-primary/10 backdrop-blur-sm">
+      <Sidebar className="border-r-0 bg-gradient-to-b from-sidebar-background to-sidebar-background/50 backdrop-blur-xl dark:from-gray-900 dark:to-gray-800">
+        <SidebarHeader className="border-b border-border/50 bg-gradient-to-r from-primary/5 to-primary/10 backdrop-blur-sm dark:from-gray-800 dark:to-gray-700">
           <div className="flex items-center gap-3 p-2">
             <div className="p-2 rounded-xl bg-gradient-to-r from-purple-600 to-blue-600 text-white shadow-lg glow-effect">
               <QuotedIcon className="size-6" />
@@ -105,7 +104,7 @@ export default function DashboardLayout({
           </SidebarMenu>
         </SidebarContent>
         
-        <SidebarFooter className="border-t border-border/50 p-3">
+        <SidebarFooter className="border-t border-border/50 p-3 dark:border-gray-700">
           <SidebarMenu>
             <SidebarMenuItem>
               <SidebarMenuButton asChild className="hover:bg-primary/10 hover:text-primary transition-all duration-200 rounded-xl p-3 h-auto">
@@ -127,7 +126,7 @@ export default function DashboardLayout({
           </SidebarMenu>
           
           {/* User Profile Section */}
-          <div className="mt-4 p-3 rounded-xl bg-gradient-to-r from-muted/50 to-muted/30 border border-border/50">
+          <div className="mt-4 p-3 rounded-xl bg-gradient-to-r from-muted/50 to-muted/30 border border-border/50 dark:from-gray-800 dark:to-gray-700 dark:border-gray-600">
             <div className="flex items-center gap-3">
               <div className="w-8 h-8 rounded-full bg-gradient-to-r from-primary to-primary/80 flex items-center justify-center">
                 <User className="h-4 w-4 text-primary-foreground" />
@@ -142,7 +141,7 @@ export default function DashboardLayout({
       </Sidebar>
       
       <SidebarInset>
-        <header className="sticky top-0 z-40 flex h-16 items-center gap-4 border-b border-border/50 bg-background/80 backdrop-blur-xl px-4 lg:px-6">
+        <header className="sticky top-0 z-40 flex h-16 items-center gap-4 border-b border-border/50 bg-background/80 backdrop-blur-xl px-4 lg:px-6 dark:border-gray-700 dark:bg-gray-900/80">
           <SidebarTrigger className="md:hidden hover:bg-primary/10 rounded-lg" />
           
           <div className="flex-1 flex items-center gap-4">
@@ -162,11 +161,7 @@ export default function DashboardLayout({
             </Button>
             
             {/* Theme Toggle */}
-            <Button variant="ghost" size="icon" className="h-9 w-9 hover:bg-primary/10 rounded-xl">
-              <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-              <Moon className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-              <span className="sr-only">Toggle theme</span>
-            </Button>
+            <ThemeToggle />
             
             {/* Settings */}
             <Button variant="outline" size="icon" className="h-9 w-9 hover:bg-primary/10 border-border/50 rounded-xl">
@@ -178,9 +173,9 @@ export default function DashboardLayout({
         
         <div className="relative min-h-screen">
           {/* Background decoration */}
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 pointer-events-none" />
-          <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-l from-primary/10 to-transparent rounded-full blur-3xl pointer-events-none" />
-          <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-r from-secondary/10 to-transparent rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 pointer-events-none dark:from-gray-900/50" />
+          <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-l from-primary/10 to-transparent rounded-full blur-3xl pointer-events-none dark:from-blue-500/10" />
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-r from-secondary/10 to-transparent rounded-full blur-3xl pointer-events-none dark:from-purple-500/10" />
           
           <div className="relative z-10">
             {children}
