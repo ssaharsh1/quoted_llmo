@@ -8,9 +8,32 @@ interface LogoProps {
   size?: 'sm' | 'md' | 'lg';
 }
 
-export function Logo({ className = '', size = 'md' }: LogoProps) {
-  const { theme, resolvedTheme } = useTheme();
-  const isDark = resolvedTheme === 'dark';
+export function Logo({ className = '', size = 'md', forceDark = false }: LogoProps & { forceDark?: boolean }) {
+  const { resolvedTheme } = useTheme();
+  const isDark = forceDark || resolvedTheme === 'dark';
+
+  const sizeClasses = {
+    sm: 'h-16 w-16',
+    md: 'h-24 w-24',
+    lg: 'h-32 w-32'
+  };
+
+  return (
+    <div className={`${sizeClasses[size]} relative ${className}`}>
+      <Image
+        src={isDark ? '/images/logos/logo-dark.png' : '/images/logos/logo-light.png'}
+        alt="Quoted Logo"
+        fill
+        className="object-contain"
+        priority
+      />
+    </div>
+  );
+}
+
+export function LogoIcon({ className = '', size = 'md', forceDark = false }: LogoProps & { forceDark?: boolean }) {
+  const { resolvedTheme } = useTheme();
+  const isDark = forceDark || resolvedTheme === 'dark';
 
   const sizeClasses = {
     sm: 'h-12 w-12',
@@ -25,28 +48,7 @@ export function Logo({ className = '', size = 'md' }: LogoProps) {
         alt="Quoted Logo"
         fill
         className="object-contain"
-      />
-    </div>
-  );
-}
-
-export function LogoIcon({ className = '', size = 'md' }: LogoProps) {
-  const { theme, resolvedTheme } = useTheme();
-  const isDark = resolvedTheme === 'dark';
-
-  const sizeClasses = {
-    sm: 'h-6 w-6',
-    md: 'h-8 w-8',
-    lg: 'h-12 w-12'
-  };
-
-  return (
-    <div className={`${sizeClasses[size]} relative ${className}`}>
-      <Image
-        src={isDark ? '/images/logos/logo-dark.png' : '/images/logos/logo-light.png'}
-        alt="Quoted Logo"
-        fill
-        className="object-contain"
+        priority
       />
     </div>
   );

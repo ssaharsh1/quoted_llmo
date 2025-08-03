@@ -24,7 +24,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { ThemeToggle } from '@/components/theme-toggle';
-import { Logo } from '@/components/logo';
+import { LogoWrapper } from '@/components/logo-wrapper';
 import Link from 'next/link';
 
 const navigationItems = [
@@ -62,7 +62,7 @@ export default function DashboardLayout({
         <SidebarHeader className="border-b border-border/50 bg-gradient-to-r from-primary/5 to-primary/10 backdrop-blur-sm dark:from-gray-800 dark:to-gray-700">
           <div className="flex items-center justify-center p-2">
             <Link href="/" className="hover:opacity-80 transition-opacity">
-              <Logo size="md" />
+              <LogoWrapper size="lg" />
             </Link>
           </div>
         </SidebarHeader>
