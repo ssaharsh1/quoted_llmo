@@ -135,18 +135,16 @@ export default function DashboardLayout({
       </Sidebar>
       
       <SidebarInset>
-        <header className="sticky top-0 z-40 flex h-16 items-center gap-4 border-b border-border/50 bg-background/80 backdrop-blur-xl px-4 lg:px-6 dark:border-gray-700 dark:bg-gray-900/80">
-          <SidebarTrigger className="md:hidden hover:bg-primary/10 rounded-lg" />
-          
-          <div className="flex-1 flex items-center gap-4">
-            {/* Breadcrumb or search can go here */}
-            <div className="flex items-center gap-2 text-sm text-muted-foreground">
-              <span>LLMO Platform</span>
-              <span className="text-border">•</span>
-              <span className="font-medium text-foreground">Tools</span>
-            </div>
+        <header className="sticky top-0 z-40 flex h-16 items-center justify-between border-b border-border/50 bg-background/80 backdrop-blur-xl px-4 lg:px-6 dark:border-gray-700 dark:bg-gray-900/80">
+          {/* Left side - Menu and Logo */}
+          <div className="flex items-center gap-4">
+            <SidebarTrigger className="md:hidden hover:bg-primary/10 rounded-lg" />
+            <Link href="/" className="hover:opacity-80 transition-opacity">
+              <LogoWrapper size="md" />
+            </Link>
           </div>
           
+          {/* Right side - Actions */}
           <div className="flex items-center gap-2">
             {/* Notifications */}
             <Button variant="ghost" size="icon" className="h-9 w-9 hover:bg-primary/10 rounded-xl">
