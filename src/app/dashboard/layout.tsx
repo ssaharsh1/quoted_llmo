@@ -94,8 +94,10 @@ export default function DashboardLayout({
         <Sidebar className="border-r border-border/30 dark:border-gray-600/50 bg-gradient-to-b from-sidebar-background to-sidebar-background/50 backdrop-blur-xl dark:from-gray-950/90 dark:to-gray-900/80 mt-16 shadow-xl dark:shadow-gray-900/30" collapsible="icon">
           {/* Collapse Button - Middle of Sidebar */}
           <div className="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-1/2 z-10">
-            <SidebarTrigger className="h-12 w-12 p-3 bg-background dark:bg-gray-800 border border-border/50 dark:border-gray-600/70 rounded-full shadow-lg dark:shadow-gray-900/40 hover:bg-muted dark:hover:bg-gray-700/70 hover:border-border dark:hover:border-gray-500 transition-all duration-200 flex items-center justify-center">
-              <PanelLeft className="h-5 w-5 text-foreground dark:text-gray-300" />
+            <SidebarTrigger className="h-12 w-12 bg-background dark:bg-gray-800 border border-border/50 dark:border-gray-600/70 rounded-full shadow-lg dark:shadow-gray-900/40 hover:bg-muted dark:hover:bg-gray-700/70 hover:border-border dark:hover:border-gray-500 transition-all duration-200">
+              <div className="absolute inset-0 flex items-center justify-center">
+                <PanelLeft className="h-5 w-5 text-foreground dark:text-gray-300" />
+              </div>
             </SidebarTrigger>
           </div>
           
