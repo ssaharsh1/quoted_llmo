@@ -60,13 +60,10 @@ export default function DashboardLayout({
     <SidebarProvider>
       <Sidebar className="border-r-0 bg-gradient-to-b from-sidebar-background to-sidebar-background/50 backdrop-blur-xl dark:from-gray-900 dark:to-gray-800">
         <SidebarHeader className="border-b border-border/50 bg-gradient-to-r from-primary/5 to-primary/10 backdrop-blur-sm dark:from-gray-800 dark:to-gray-700">
-          <div className="flex items-center gap-3 p-2">
+          <div className="flex items-center justify-center p-2">
             <Link href="/" className="hover:opacity-80 transition-opacity">
               <Logo size="md" />
             </Link>
-            <div>
-              <p className="text-xs text-muted-foreground">LLMO Platform</p>
-            </div>
           </div>
         </SidebarHeader>
         

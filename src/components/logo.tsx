@@ -9,13 +9,13 @@ interface LogoProps {
 }
 
 export function Logo({ className = '', size = 'md' }: LogoProps) {
-  const { theme } = useTheme();
-  const isDark = theme === 'dark';
+  const { theme, resolvedTheme } = useTheme();
+  const isDark = resolvedTheme === 'dark';
 
   const sizeClasses = {
-    sm: 'h-8 w-8',
-    md: 'h-12 w-12',
-    lg: 'h-16 w-16'
+    sm: 'h-12 w-12',
+    md: 'h-16 w-16',
+    lg: 'h-20 w-20'
   };
 
   return (
@@ -31,8 +31,8 @@ export function Logo({ className = '', size = 'md' }: LogoProps) {
 }
 
 export function LogoIcon({ className = '', size = 'md' }: LogoProps) {
-  const { theme } = useTheme();
-  const isDark = theme === 'dark';
+  const { theme, resolvedTheme } = useTheme();
+  const isDark = resolvedTheme === 'dark';
 
   const sizeClasses = {
     sm: 'h-6 w-6',
