@@ -92,12 +92,6 @@ export default function DashboardLayout({
 
         {/* Sidebar - Below Top Banner */}
         <Sidebar className="border-r-0 bg-gradient-to-b from-sidebar-background to-sidebar-background/50 backdrop-blur-xl dark:from-gray-900 dark:to-gray-800 mt-16" collapsible="icon">
-          <SidebarHeader className="border-b border-border/50 bg-gradient-to-r from-primary/5 to-primary/10 backdrop-blur-sm dark:from-gray-800 dark:to-gray-700">
-            <div className="flex items-center justify-center p-2">
-              <div className="text-sm font-medium text-muted-foreground">Menu</div>
-            </div>
-          </SidebarHeader>
-          
           {/* Collapse Button - Middle of Sidebar */}
           <div className="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-1/2 z-10">
             <SidebarTrigger className="h-8 w-8 bg-background border border-border/50 rounded-full shadow-lg hover:bg-primary/10 hover:border-primary/50 transition-all duration-200 flex items-center justify-center">
