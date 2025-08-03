@@ -94,8 +94,8 @@ export default function DashboardLayout({
         <Sidebar className="border-r border-border/30 dark:border-gray-600/50 bg-gradient-to-b from-sidebar-background to-sidebar-background/50 backdrop-blur-xl dark:from-gray-950/90 dark:to-gray-900/80 mt-16 shadow-xl dark:shadow-gray-900/30" collapsible="icon">
           {/* Collapse Button - Middle of Sidebar */}
           <div className="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-1/2 z-10">
-            <SidebarTrigger className="h-8 w-8 bg-background dark:bg-gray-800 border border-border/50 dark:border-gray-600/70 rounded-full shadow-lg dark:shadow-gray-900/40 hover:bg-primary/10 dark:hover:bg-gray-700/70 hover:border-primary/50 dark:hover:border-gray-500 transition-all duration-200 flex items-center justify-center">
-              <PanelLeft className="h-4 w-4 text-foreground dark:text-gray-300" />
+            <SidebarTrigger className="h-12 w-12 p-3 bg-background dark:bg-gray-800 border border-border/50 dark:border-gray-600/70 rounded-full shadow-lg dark:shadow-gray-900/40 hover:bg-muted dark:hover:bg-gray-700/70 hover:border-border dark:hover:border-gray-500 transition-all duration-200 flex items-center justify-center">
+              <PanelLeft className="h-5 w-5 text-foreground dark:text-gray-300" />
             </SidebarTrigger>
           </div>
           
@@ -103,15 +103,15 @@ export default function DashboardLayout({
             <SidebarMenu className="space-y-3">
               {navigationItems.map((item, index) => (
                 <SidebarMenuItem key={index}>
-                  <SidebarMenuButton asChild className="group hover:bg-primary/10 dark:hover:bg-gray-800/60 hover:text-primary dark:hover:text-blue-400 transition-all duration-200 rounded-xl p-3 h-auto border border-transparent hover:border-primary/20 dark:hover:border-gray-700/80">
+                  <SidebarMenuButton asChild className="group hover:bg-muted dark:hover:bg-gray-800/60 transition-all duration-200 rounded-xl p-3 h-auto border border-transparent hover:border-border/50 dark:hover:border-gray-700/80">
                     <Link href={item.href} prefetch={true}>
                       <div className="flex items-center gap-3 w-full">
-                        <div className="p-2 rounded-lg bg-gradient-to-r from-muted to-muted/50 dark:from-gray-800/60 dark:to-gray-700/40 group-hover:from-primary/20 group-hover:to-primary/10 dark:group-hover:from-blue-900/30 dark:group-hover:to-blue-800/20 transition-all duration-200 shadow-sm dark:shadow-gray-900/20">
-                          <item.icon className="h-4 w-4 text-foreground dark:text-gray-300 group-hover:text-primary dark:group-hover:text-blue-400" />
+                        <div className="p-2 rounded-lg bg-gradient-to-r from-muted to-muted/50 dark:from-gray-800/60 dark:to-gray-700/40 group-hover:from-muted/80 group-hover:to-muted/60 dark:group-hover:from-gray-700/60 dark:group-hover:to-gray-600/40 transition-all duration-200 shadow-sm dark:shadow-gray-900/20">
+                          <item.icon className="h-4 w-4 text-foreground dark:text-gray-300" />
                         </div>
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center justify-between">
-                            <span className="font-medium text-sm text-foreground dark:text-gray-200 group-hover:text-primary dark:group-hover:text-blue-400">{item.title}</span>
+                            <span className="font-medium text-sm text-foreground dark:text-gray-200">{item.title}</span>
                             {item.badge && (
                               <Badge variant="secondary" className="text-xs px-2 py-0 bg-gradient-to-r from-emerald-500 to-teal-500 text-white shadow-sm">
                                 {item.badge}
@@ -133,7 +133,7 @@ export default function DashboardLayout({
           <SidebarFooter className="border-t border-border/30 dark:border-gray-600/50 p-3 bg-gradient-to-r from-background/50 to-background/30 dark:from-gray-900/50 dark:to-gray-800/30">
             <SidebarMenu>
               <SidebarMenuItem>
-                <SidebarMenuButton asChild className="hover:bg-primary/10 dark:hover:bg-gray-800/60 hover:text-primary dark:hover:text-blue-400 transition-all duration-200 rounded-xl p-3 h-auto border border-transparent hover:border-primary/20 dark:hover:border-gray-700/80">
+                <SidebarMenuButton asChild className="hover:bg-muted dark:hover:bg-gray-800/60 transition-all duration-200 rounded-xl p-3 h-auto border border-transparent hover:border-border/50 dark:hover:border-gray-700/80">
                   <Link href="/dashboard/settings" prefetch={true}>
                     <div className="flex items-center gap-3 w-full">
                       <div className="p-2 rounded-lg bg-gradient-to-r from-muted to-muted/50 dark:from-gray-800/60 dark:to-gray-700/40 shadow-sm dark:shadow-gray-900/20">
