@@ -21,10 +21,10 @@ import {
   SidebarTrigger,
   SidebarFooter,
 } from '@/components/ui/sidebar';
-import { QuotedIcon } from '@/components/icons';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { ThemeToggle } from '@/components/theme-toggle';
+import { Logo } from '@/components/logo';
 import Link from 'next/link';
 
 const navigationItems = [
@@ -61,13 +61,10 @@ export default function DashboardLayout({
       <Sidebar className="border-r-0 bg-gradient-to-b from-sidebar-background to-sidebar-background/50 backdrop-blur-xl dark:from-gray-900 dark:to-gray-800">
         <SidebarHeader className="border-b border-border/50 bg-gradient-to-r from-primary/5 to-primary/10 backdrop-blur-sm dark:from-gray-800 dark:to-gray-700">
           <div className="flex items-center gap-3 p-2">
-            <div className="p-2 rounded-xl bg-gradient-to-r from-purple-600 to-blue-600 text-white shadow-lg glow-effect">
-              <QuotedIcon className="size-6" />
-            </div>
+            <Link href="/" className="hover:opacity-80 transition-opacity">
+              <Logo size="md" />
+            </Link>
             <div>
-              <Link href="/" className="text-xl font-bold gradient-text hover:opacity-80 transition-opacity">
-                Quoted
-              </Link>
               <p className="text-xs text-muted-foreground">LLMO Platform</p>
             </div>
           </div>
