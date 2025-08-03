@@ -60,11 +60,11 @@ export default function DashboardLayout({
     <SidebarProvider>
       <div className="flex h-screen">
         {/* Top Banner - Full Width */}
-        <div className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border/50 dark:bg-gray-900/80 dark:border-gray-700">
+        <div className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-xl border-b border-border/30 dark:bg-gray-950/95 dark:border-gray-600/50 shadow-lg dark:shadow-gray-900/20">
           <div className="flex h-16 items-center justify-between px-4 lg:px-6">
             {/* Left side - Menu and Logo */}
             <div className="flex items-center gap-4">
-              <SidebarTrigger className="md:hidden hover:bg-primary/10 rounded-lg" />
+              <SidebarTrigger className="md:hidden hover:bg-primary/10 dark:hover:bg-gray-700/50 rounded-lg transition-colors" />
               <Link href="/" className="hover:opacity-80 transition-opacity">
                 <LogoWrapper size="md" />
               </Link>
@@ -73,7 +73,7 @@ export default function DashboardLayout({
             {/* Right side - Actions */}
             <div className="flex items-center gap-2">
               {/* Notifications */}
-              <Button variant="ghost" size="icon" className="h-9 w-9 hover:bg-primary/10 rounded-xl">
+              <Button variant="ghost" size="icon" className="h-9 w-9 hover:bg-primary/10 dark:hover:bg-gray-700/50 rounded-xl transition-colors">
                 <Bell className="h-4 w-4" />
                 <span className="sr-only">Notifications</span>
               </Button>
@@ -82,7 +82,7 @@ export default function DashboardLayout({
               <ThemeToggle />
               
               {/* Settings */}
-              <Button variant="outline" size="icon" className="h-9 w-9 hover:bg-primary/10 border-border/50 rounded-xl">
+              <Button variant="outline" size="icon" className="h-9 w-9 hover:bg-primary/10 dark:hover:bg-gray-700/50 border-border/50 dark:border-gray-600/50 rounded-xl transition-colors">
                 <Settings className="h-4 w-4" />
                 <span className="sr-only">Settings</span>
               </Button>
@@ -91,34 +91,34 @@ export default function DashboardLayout({
         </div>
 
         {/* Sidebar - Below Top Banner */}
-        <Sidebar className="border-r-0 bg-gradient-to-b from-sidebar-background to-sidebar-background/50 backdrop-blur-xl dark:from-gray-900 dark:to-gray-800 mt-16" collapsible="icon">
+        <Sidebar className="border-r border-border/30 dark:border-gray-600/50 bg-gradient-to-b from-sidebar-background to-sidebar-background/50 backdrop-blur-xl dark:from-gray-950/90 dark:to-gray-900/80 mt-16 shadow-xl dark:shadow-gray-900/30" collapsible="icon">
           {/* Collapse Button - Middle of Sidebar */}
           <div className="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-1/2 z-10">
-            <SidebarTrigger className="h-8 w-8 bg-background border border-border/50 rounded-full shadow-lg hover:bg-primary/10 hover:border-primary/50 transition-all duration-200 flex items-center justify-center">
-              <PanelLeft className="h-4 w-4" />
+            <SidebarTrigger className="h-8 w-8 bg-background dark:bg-gray-800 border border-border/50 dark:border-gray-600/70 rounded-full shadow-lg dark:shadow-gray-900/40 hover:bg-primary/10 dark:hover:bg-gray-700/70 hover:border-primary/50 dark:hover:border-gray-500 transition-all duration-200 flex items-center justify-center">
+              <PanelLeft className="h-4 w-4 text-foreground dark:text-gray-300" />
             </SidebarTrigger>
           </div>
           
           <SidebarContent className="px-3 py-4">
-            <SidebarMenu className="space-y-2">
+            <SidebarMenu className="space-y-3">
               {navigationItems.map((item, index) => (
                 <SidebarMenuItem key={index}>
-                  <SidebarMenuButton asChild className="group hover:bg-primary/10 hover:text-primary transition-all duration-200 rounded-xl p-3 h-auto">
+                  <SidebarMenuButton asChild className="group hover:bg-primary/10 dark:hover:bg-gray-800/60 hover:text-primary dark:hover:text-blue-400 transition-all duration-200 rounded-xl p-3 h-auto border border-transparent hover:border-primary/20 dark:hover:border-gray-700/80">
                     <Link href={item.href} prefetch={true}>
                       <div className="flex items-center gap-3 w-full">
-                        <div className="p-2 rounded-lg bg-gradient-to-r from-muted to-muted/50 group-hover:from-primary/20 group-hover:to-primary/10 transition-all duration-200">
-                          <item.icon className="h-4 w-4" />
+                        <div className="p-2 rounded-lg bg-gradient-to-r from-muted to-muted/50 dark:from-gray-800/60 dark:to-gray-700/40 group-hover:from-primary/20 group-hover:to-primary/10 dark:group-hover:from-blue-900/30 dark:group-hover:to-blue-800/20 transition-all duration-200 shadow-sm dark:shadow-gray-900/20">
+                          <item.icon className="h-4 w-4 text-foreground dark:text-gray-300 group-hover:text-primary dark:group-hover:text-blue-400" />
                         </div>
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center justify-between">
-                            <span className="font-medium text-sm">{item.title}</span>
+                            <span className="font-medium text-sm text-foreground dark:text-gray-200 group-hover:text-primary dark:group-hover:text-blue-400">{item.title}</span>
                             {item.badge && (
-                              <Badge variant="secondary" className="text-xs px-2 py-0 bg-gradient-to-r from-emerald-500 to-teal-500 text-white">
+                              <Badge variant="secondary" className="text-xs px-2 py-0 bg-gradient-to-r from-emerald-500 to-teal-500 text-white shadow-sm">
                                 {item.badge}
                               </Badge>
                             )}
                           </div>
-                          <p className="text-xs text-muted-foreground mt-0.5 truncate">
+                          <p className="text-xs text-muted-foreground dark:text-gray-400 mt-0.5 truncate">
                             {item.description}
                           </p>
                         </div>
@@ -130,18 +130,18 @@ export default function DashboardLayout({
             </SidebarMenu>
           </SidebarContent>
           
-          <SidebarFooter className="border-t border-border/50 p-3 dark:border-gray-700">
+          <SidebarFooter className="border-t border-border/30 dark:border-gray-600/50 p-3 bg-gradient-to-r from-background/50 to-background/30 dark:from-gray-900/50 dark:to-gray-800/30">
             <SidebarMenu>
               <SidebarMenuItem>
-                <SidebarMenuButton asChild className="hover:bg-primary/10 hover:text-primary transition-all duration-200 rounded-xl p-3 h-auto">
+                <SidebarMenuButton asChild className="hover:bg-primary/10 dark:hover:bg-gray-800/60 hover:text-primary dark:hover:text-blue-400 transition-all duration-200 rounded-xl p-3 h-auto border border-transparent hover:border-primary/20 dark:hover:border-gray-700/80">
                   <Link href="/dashboard/settings" prefetch={true}>
                     <div className="flex items-center gap-3 w-full">
-                      <div className="p-2 rounded-lg bg-gradient-to-r from-muted to-muted/50">
-                        <Settings className="h-4 w-4" />
+                      <div className="p-2 rounded-lg bg-gradient-to-r from-muted to-muted/50 dark:from-gray-800/60 dark:to-gray-700/40 shadow-sm dark:shadow-gray-900/20">
+                        <Settings className="h-4 w-4 text-foreground dark:text-gray-300" />
                       </div>
                       <div className="flex-1">
-                        <span className="font-medium text-sm">Settings</span>
-                        <p className="text-xs text-muted-foreground mt-0.5">
+                        <span className="font-medium text-sm text-foreground dark:text-gray-200">Settings</span>
+                        <p className="text-xs text-muted-foreground dark:text-gray-400 mt-0.5">
                           Preferences & config
                         </p>
                       </div>
@@ -152,26 +152,27 @@ export default function DashboardLayout({
             </SidebarMenu>
             
             {/* User Profile Section */}
-            <div className="mt-4 p-3 rounded-xl bg-gradient-to-r from-muted/50 to-muted/30 border border-border/50 dark:from-gray-800 dark:to-gray-700 dark:border-gray-600">
+            <div className="mt-4 p-3 rounded-xl bg-gradient-to-r from-muted/50 to-muted/30 dark:from-gray-800/60 dark:to-gray-700/40 border border-border/50 dark:border-gray-600/70 shadow-lg dark:shadow-gray-900/30 backdrop-blur-sm">
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-full bg-gradient-to-r from-primary to-primary/80 flex items-center justify-center">
-                  <User className="h-4 w-4 text-primary-foreground" />
+                <div className="w-8 h-8 rounded-full bg-gradient-to-r from-primary to-primary/80 dark:from-blue-600 dark:to-blue-500 flex items-center justify-center shadow-md dark:shadow-blue-900/30">
+                  <User className="h-4 w-4 text-primary-foreground dark:text-white" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium truncate">Demo User</p>
-                  <p className="text-xs text-muted-foreground">Free Plan</p>
+                  <p className="text-sm font-medium truncate text-foreground dark:text-gray-200">Demo User</p>
+                  <p className="text-xs text-muted-foreground dark:text-gray-400">Free Plan</p>
                 </div>
               </div>
             </div>
           </SidebarFooter>
         </Sidebar>
         
-        <SidebarInset className="mt-16">
+        <SidebarInset className="mt-16 bg-background dark:bg-gray-950/90">
           <div className="relative min-h-screen">
-            {/* Background decoration */}
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 pointer-events-none dark:from-gray-900/50" />
-            <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-l from-primary/10 to-transparent rounded-full blur-3xl pointer-events-none dark:from-blue-500/10" />
-            <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-r from-secondary/10 to-transparent rounded-full blur-3xl pointer-events-none dark:from-purple-500/10" />
+            {/* Enhanced Background decoration */}
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 pointer-events-none dark:from-gray-900/70 dark:via-gray-950/50 dark:to-gray-900/70" />
+            <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-l from-primary/10 to-transparent rounded-full blur-3xl pointer-events-none dark:from-blue-500/20 dark:to-transparent" />
+            <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-r from-secondary/10 to-transparent rounded-full blur-3xl pointer-events-none dark:from-purple-500/20 dark:to-transparent" />
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-r from-emerald-500/5 to-teal-500/5 rounded-full blur-2xl pointer-events-none dark:from-emerald-500/10 dark:to-teal-500/10" />
             
             <div className="relative z-10">
               {children}
