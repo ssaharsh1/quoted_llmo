@@ -118,376 +118,379 @@ export default function AnalyticsPage() {
 
   return (
     <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-lg font-semibold md:text-2xl">LLMO Analytics</h1>
-          <p className="text-muted-foreground">
-            Track your LLMO performance and optimization progress
-          </p>
+      <div className="w-full max-w-[1600px] mx-auto space-y-6">
+        {/* Header */}
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-lg font-semibold md:text-2xl">LLMO Analytics</h1>
+            <p className="text-muted-foreground">
+              Track your LLMO performance and optimization progress
+            </p>
+          </div>
+          <div className="flex items-center gap-2">
+            <Select value={timeRange} onValueChange={setTimeRange}>
+              <SelectTrigger className="w-32">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="1m">Last Month</SelectItem>
+                <SelectItem value="3m">Last 3 Months</SelectItem>
+                <SelectItem value="6m">Last 6 Months</SelectItem>
+                <SelectItem value="1y">Last Year</SelectItem>
+              </SelectContent>
+            </Select>
+            <Button variant="outline" size="sm">
+              <RefreshCw className="h-4 w-4 mr-2" />
+              Refresh
+            </Button>
+            <Button variant="outline" size="sm">
+              <Download className="h-4 w-4 mr-2" />
+              Export
+            </Button>
+          </div>
         </div>
-        <div className="flex items-center gap-2">
-          <Select value={timeRange} onValueChange={setTimeRange}>
-            <SelectTrigger className="w-32">
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="1m">Last Month</SelectItem>
-              <SelectItem value="3m">Last 3 Months</SelectItem>
-              <SelectItem value="6m">Last 6 Months</SelectItem>
-              <SelectItem value="1y">Last Year</SelectItem>
-            </SelectContent>
-          </Select>
-          <Button variant="outline" size="sm">
-            <RefreshCw className="h-4 w-4 mr-2" />
-            Refresh
-          </Button>
-          <Button variant="outline" size="sm">
-            <Download className="h-4 w-4 mr-2" />
-            Export
-          </Button>
-        </div>
-      </div>
 
-      {/* Overview Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <Card className="shadow-md">
-          <CardContent className="pt-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-muted-foreground">Total Audits</p>
-                <p className="text-2xl font-bold">{overviewData.totalAudits}</p>
-                <p className="text-xs text-muted-foreground mt-1">Last 6 months</p>
-              </div>
-              <BarChart3 className="h-8 w-8 text-primary" />
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card className="shadow-md">
-          <CardContent className="pt-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-muted-foreground">Average Score</p>
-                <p className={`text-2xl font-bold ${getScoreColor(overviewData.averageScore)}`}>
-                  {overviewData.averageScore}/100
-                </p>
-                <div className="flex items-center gap-1 mt-1">
-                  <TrendingUp className="h-3 w-3 text-green-500" />
-                  <span className="text-xs text-green-600">{overviewData.improvementRate}</span>
+        {/* Overview Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <Card className="shadow-md">
+            <CardContent className="pt-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm font-medium text-muted-foreground">Total Audits</p>
+                  <p className="text-2xl font-bold">{overviewData.totalAudits}</p>
+                  <p className="text-xs text-muted-foreground mt-1">Last 6 months</p>
                 </div>
+                <BarChart3 className="h-8 w-8 text-primary" />
               </div>
-              <Target className="h-8 w-8 text-primary" />
-            </div>
-          </CardContent>
-        </Card>
+            </CardContent>
+          </Card>
 
-        <Card className="shadow-md">
-          <CardContent className="pt-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-muted-foreground">Top Performer</p>
-                <p className={`text-2xl font-bold ${getScoreColor(overviewData.topPerformer)}`}>
-                  {overviewData.topPerformer}/100
-                </p>
-                <p className="text-xs text-muted-foreground mt-1">Best scoring page</p>
+          <Card className="shadow-md">
+            <CardContent className="pt-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm font-medium text-muted-foreground">Average Score</p>
+                  <p className={`text-2xl font-bold ${getScoreColor(overviewData.averageScore)}`}>
+                    {overviewData.averageScore}/100
+                  </p>
+                  <div className="flex items-center gap-1 mt-1">
+                    <TrendingUp className="h-3 w-3 text-green-500" />
+                    <span className="text-xs text-green-600">{overviewData.improvementRate}</span>
+                  </div>
+                </div>
+                <Target className="h-8 w-8 text-primary" />
               </div>
-              <Award className="h-8 w-8 text-primary" />
-            </div>
-          </CardContent>
-        </Card>
+            </CardContent>
+          </Card>
 
-        <Card className="shadow-md">
-          <CardContent className="pt-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-muted-foreground">Last Updated</p>
-                <p className="text-lg font-semibold">{overviewData.lastUpdated}</p>
-                <p className="text-xs text-muted-foreground mt-1">Data freshness</p>
+          <Card className="shadow-md">
+            <CardContent className="pt-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm font-medium text-muted-foreground">Top Performer</p>
+                  <p className={`text-2xl font-bold ${getScoreColor(overviewData.topPerformer)}`}>
+                    {overviewData.topPerformer}/100
+                  </p>
+                  <p className="text-xs text-muted-foreground mt-1">Best scoring page</p>
+                </div>
+                <Award className="h-8 w-8 text-primary" />
               </div>
-              <Calendar className="h-8 w-8 text-primary" />
+            </CardContent>
+          </Card>
+
+          <Card className="shadow-md">
+            <CardContent className="pt-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm font-medium text-muted-foreground">Last Updated</p>
+                  <p className="text-lg font-semibold">{overviewData.lastUpdated}</p>
+                  <p className="text-xs text-muted-foreground mt-1">Data freshness</p>
+                </div>
+                <Calendar className="h-8 w-8 text-primary" />
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Main Analytics Tabs */}
+        <Tabs defaultValue="overview" className="w-full">
+          <TabsList className="grid w-full grid-cols-4">
+            <TabsTrigger value="overview">Overview</TabsTrigger>
+            <TabsTrigger value="categories">Categories</TabsTrigger>
+            <TabsTrigger value="trends">Trends</TabsTrigger>
+            <TabsTrigger value="benchmarks">Benchmarks</TabsTrigger>
+          </TabsList>
+
+          {/* Overview Tab */}
+          <TabsContent value="overview" className="space-y-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              {/* Score Trend Chart */}
+              <Card className="shadow-md">
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <TrendingUp className="h-5 w-5" />
+                    LLMO Score Trend
+                  </CardTitle>
+                  <CardDescription>
+                    Your average LLMO score over time
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <ResponsiveContainer width="100%" height={300}>
+                    <AreaChart data={trendData}>
+                      <CartesianGrid strokeDasharray="3 3" />
+                      <XAxis dataKey="month" />
+                      <YAxis domain={[0, 100]} />
+                      <Tooltip />
+                      <Area 
+                        type="monotone" 
+                        dataKey="score" 
+                        stroke="#8b5cf6" 
+                        fill="#8b5cf6" 
+                        fillOpacity={0.3} 
+                      />
+                    </AreaChart>
+                  </ResponsiveContainer>
+                </CardContent>
+              </Card>
+
+              {/* Score Distribution */}
+              <Card className="shadow-md">
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <Eye className="h-5 w-5" />
+                    Score Distribution
+                  </CardTitle>
+                  <CardDescription>
+                    How your content scores are distributed
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <ResponsiveContainer width="100%" height={300}>
+                    <PieChart>
+                      <Pie
+                        data={distributionData}
+                        dataKey="value"
+                        nameKey="name"
+                        cx="50%"
+                        cy="50%"
+                        outerRadius={80}
+                        label={({ name, value }) => `${value}%`}
+                      >
+                        {distributionData.map((entry, index) => (
+                          <Cell key={`cell-${index}`} fill={entry.color} />
+                        ))}
+                      </Pie>
+                      <Tooltip />
+                      <Legend />
+                    </PieChart>
+                  </ResponsiveContainer>
+                </CardContent>
+              </Card>
             </div>
-          </CardContent>
-        </Card>
-      </div>
 
-      {/* Main Analytics Tabs */}
-      <Tabs defaultValue="overview" className="w-full">
-        <TabsList className="grid w-full grid-cols-4">
-          <TabsTrigger value="overview">Overview</TabsTrigger>
-          <TabsTrigger value="categories">Categories</TabsTrigger>
-          <TabsTrigger value="trends">Trends</TabsTrigger>
-          <TabsTrigger value="benchmarks">Benchmarks</TabsTrigger>
-        </TabsList>
-
-        {/* Overview Tab */}
-        <TabsContent value="overview" className="space-y-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {/* Score Trend Chart */}
+            {/* Recent Audits */}
             <Card className="shadow-md">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <TrendingUp className="h-5 w-5" />
-                  LLMO Score Trend
+                  <CheckCircle2 className="h-5 w-5" />
+                  Recent Audits
                 </CardTitle>
                 <CardDescription>
-                  Your average LLMO score over time
+                  Latest LLMO audit results
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <ResponsiveContainer width="100%" height={300}>
-                  <AreaChart data={trendData}>
+                <div className="space-y-4">
+                  {recentAudits.map((audit, index) => (
+                    <div key={index} className="flex items-center justify-between p-4 border rounded-lg">
+                      <div className="flex-1">
+                        <p className="font-medium text-sm break-all pr-4">{audit.url}</p>
+                        <p className="text-xs text-muted-foreground mt-1">{audit.date}</p>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <Badge className={getScoreBadge(audit.score).color}>
+                          {audit.score}/100
+                        </Badge>
+                        <Badge variant="outline">
+                          {getScoreBadge(audit.score).label}
+                        </Badge>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          {/* Categories Tab */}
+          <TabsContent value="categories" className="space-y-6">
+            <div className="grid gap-6">
+              {categoryData.map((category, index) => {
+                const icons = [Settings, Database, Users, Eye, Brain];
+                const IconComponent = icons[index];
+                
+                return (
+                  <Card key={index} className="shadow-md">
+                    <CardHeader>
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                          <IconComponent className="h-6 w-6 text-primary" />
+                          <div>
+                            <CardTitle className="text-lg">{category.name}</CardTitle>
+                            <CardDescription>
+                              Current score: {category.current}/100
+                            </CardDescription>
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-3">
+                          <Badge variant="outline" className="text-green-800 bg-green-100 border-green-300">
+                            {category.change} this month
+                          </Badge>
+                          <div className="text-right">
+                            <p className={`text-2xl font-bold ${getScoreColor(category.current)}`}>
+                              {category.current}
+                            </p>
+                            <p className="text-sm text-muted-foreground">vs {category.previous} last month</p>
+                          </div>
+                        </div>
+                      </div>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="space-y-2">
+                        <div className="flex justify-between text-sm">
+                          <span>Progress to Excellence (90+)</span>
+                          <span>{category.current}/90</span>
+                        </div>
+                        <Progress value={(category.current / 90) * 100} className="h-2" />
+                      </div>
+                    </CardContent>
+                  </Card>
+                );
+              })}
+            </div>
+          </TabsContent>
+
+          {/* Trends Tab */}
+          <TabsContent value="trends" className="space-y-6">
+            <Card className="shadow-md">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <BarChart3 className="h-5 w-5" />
+                  Performance Trends
+                </CardTitle>
+                <CardDescription>
+                  Track your LLMO improvements over time
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="mb-4">
+                  <Select value={selectedMetric} onValueChange={setSelectedMetric}>
+                    <SelectTrigger className="w-48">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="score">Average Score</SelectItem>
+                      <SelectItem value="audits">Number of Audits</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <ResponsiveContainer width="100%" height={400}>
+                  <LineChart data={trendData}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="month" />
-                    <YAxis domain={[0, 100]} />
+                    <YAxis />
                     <Tooltip />
-                    <Area 
+                    <Legend />
+                    <Line 
                       type="monotone" 
-                      dataKey="score" 
+                      dataKey={selectedMetric} 
                       stroke="#8b5cf6" 
-                      fill="#8b5cf6" 
-                      fillOpacity={0.3} 
+                      strokeWidth={3}
                     />
-                  </AreaChart>
+                  </LineChart>
                 </ResponsiveContainer>
               </CardContent>
             </Card>
+          </TabsContent>
 
-            {/* Score Distribution */}
+          {/* Benchmarks Tab */}
+          <TabsContent value="benchmarks" className="space-y-6">
             <Card className="shadow-md">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <Eye className="h-5 w-5" />
-                  Score Distribution
+                  <Target className="h-5 w-5" />
+                  Competitive Analysis
                 </CardTitle>
                 <CardDescription>
-                  How your content scores are distributed
+                  See how you stack up against competitors and industry averages
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <ResponsiveContainer width="100%" height={300}>
-                  <PieChart>
-                    <Pie
-                      data={distributionData}
-                      dataKey="value"
-                      nameKey="name"
-                      cx="50%"
-                      cy="50%"
-                      outerRadius={80}
-                      label={({ name, value }) => `${value}%`}
-                    >
-                      {distributionData.map((entry, index) => (
-                        <Cell key={`cell-${index}`} fill={entry.color} />
-                      ))}
-                    </Pie>
+                <ResponsiveContainer width="100%" height={350}>
+                  <BarChart data={competitorData} layout="horizontal">
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis type="number" domain={[0, 100]} />
+                    <YAxis dataKey="name" type="category" width={100} />
                     <Tooltip />
-                    <Legend />
-                  </PieChart>
+                    <Bar dataKey="score" fill="#8b5cf6" />
+                  </BarChart>
                 </ResponsiveContainer>
               </CardContent>
             </Card>
-          </div>
 
-          {/* Recent Audits */}
-          <Card className="shadow-md">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <CheckCircle2 className="h-5 w-5" />
-                Recent Audits
-              </CardTitle>
-              <CardDescription>
-                Latest LLMO audit results
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
-                {recentAudits.map((audit, index) => (
-                  <div key={index} className="flex items-center justify-between p-4 border rounded-lg">
-                    <div className="flex-1">
-                      <p className="font-medium text-sm break-all pr-4">{audit.url}</p>
-                      <p className="text-xs text-muted-foreground mt-1">{audit.date}</p>
+            {/* Improvement Opportunities */}
+            <Card className="shadow-md">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Zap className="h-5 w-5" />
+                  Improvement Opportunities
+                </CardTitle>
+                <CardDescription>
+                  Areas where you can gain the most ground
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="grid gap-4">
+                  <div className="flex items-center justify-between p-4 bg-muted/50 rounded-lg">
+                    <div>
+                      <h4 className="font-semibold">Content Quality</h4>
+                      <p className="text-sm text-muted-foreground">
+                        Improve E-E-A-T signals and author credibility
+                      </p>
                     </div>
-                    <div className="flex items-center gap-3">
-                      <Badge className={getScoreBadge(audit.score).color}>
-                        {audit.score}/100
-                      </Badge>
-                      <Badge variant="outline">
-                        {getScoreBadge(audit.score).label}
-                      </Badge>
-                    </div>
+                    <Badge className="bg-yellow-100 text-yellow-800 border-yellow-300">
+                      +16 points possible
+                    </Badge>
                   </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-        </TabsContent>
-
-        {/* Categories Tab */}
-        <TabsContent value="categories" className="space-y-6">
-          <div className="grid gap-6">
-            {categoryData.map((category, index) => {
-              const icons = [Settings, Database, Users, Eye, Brain];
-              const IconComponent = icons[index];
-              
-              return (
-                <Card key={index} className="shadow-md">
-                  <CardHeader>
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-3">
-                        <IconComponent className="h-6 w-6 text-primary" />
-                        <div>
-                          <CardTitle className="text-lg">{category.name}</CardTitle>
-                          <CardDescription>
-                            Current score: {category.current}/100
-                          </CardDescription>
-                        </div>
-                      </div>
-                      <div className="flex items-center gap-3">
-                        <Badge variant="outline" className="text-green-800 bg-green-100 border-green-300">
-                          {category.change} this month
-                        </Badge>
-                        <div className="text-right">
-                          <p className={`text-2xl font-bold ${getScoreColor(category.current)}`}>
-                            {category.current}
-                          </p>
-                          <p className="text-sm text-muted-foreground">vs {category.previous} last month</p>
-                        </div>
-                      </div>
+                  <div className="flex items-center justify-between p-4 bg-muted/50 rounded-lg">
+                    <div>
+                      <h4 className="font-semibold">AI Readability</h4>
+                      <p className="text-sm text-muted-foreground">
+                        Enhance content structure for AI comprehension
+                      </p>
                     </div>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="space-y-2">
-                      <div className="flex justify-between text-sm">
-                        <span>Progress to Excellence (90+)</span>
-                        <span>{category.current}/90</span>
-                      </div>
-                      <Progress value={(category.current / 90) * 100} className="h-2" />
-                    </div>
-                  </CardContent>
-                </Card>
-              );
-            })}
-          </div>
-        </TabsContent>
-
-        {/* Trends Tab */}
-        <TabsContent value="trends" className="space-y-6">
-          <Card className="shadow-md">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <BarChart3 className="h-5 w-5" />
-                Performance Trends
-              </CardTitle>
-              <CardDescription>
-                Track your LLMO improvements over time
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="mb-4">
-                <Select value={selectedMetric} onValueChange={setSelectedMetric}>
-                  <SelectTrigger className="w-48">
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="score">Average Score</SelectItem>
-                    <SelectItem value="audits">Number of Audits</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-              <ResponsiveContainer width="100%" height={400}>
-                <LineChart data={trendData}>
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="month" />
-                  <YAxis />
-                  <Tooltip />
-                  <Legend />
-                  <Line 
-                    type="monotone" 
-                    dataKey={selectedMetric} 
-                    stroke="#8b5cf6" 
-                    strokeWidth={3}
-                  />
-                </LineChart>
-              </ResponsiveContainer>
-            </CardContent>
-          </Card>
-        </TabsContent>
-
-        {/* Benchmarks Tab */}
-        <TabsContent value="benchmarks" className="space-y-6">
-          <Card className="shadow-md">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Target className="h-5 w-5" />
-                Competitive Analysis
-              </CardTitle>
-              <CardDescription>
-                See how you stack up against competitors and industry averages
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <ResponsiveContainer width="100%" height={350}>
-                <BarChart data={competitorData} layout="horizontal">
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis type="number" domain={[0, 100]} />
-                  <YAxis dataKey="name" type="category" width={100} />
-                  <Tooltip />
-                  <Bar dataKey="score" fill="#8b5cf6" />
-                </BarChart>
-              </ResponsiveContainer>
-            </CardContent>
-          </Card>
-
-          {/* Improvement Opportunities */}
-          <Card className="shadow-md">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Zap className="h-5 w-5" />
-                Improvement Opportunities
-              </CardTitle>
-              <CardDescription>
-                Areas where you can gain the most ground
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="grid gap-4">
-                <div className="flex items-center justify-between p-4 bg-muted/50 rounded-lg">
-                  <div>
-                    <h4 className="font-semibold">Content Quality</h4>
-                    <p className="text-sm text-muted-foreground">
-                      Improve E-E-A-T signals and author credibility
-                    </p>
+                    <Badge className="bg-blue-100 text-blue-800 border-blue-300">
+                      +13 points possible
+                    </Badge>
                   </div>
-                  <Badge className="bg-yellow-100 text-yellow-800 border-yellow-300">
-                    +16 points possible
-                  </Badge>
+                  <div className="flex items-center justify-between p-4 bg-muted/50 rounded-lg">
+                    <div>
+                      <h4 className="font-semibold">Meta Optimization</h4>
+                      <p className="text-sm text-muted-foreground">
+                        Optimize titles and descriptions for AI discovery
+                      </p>
+                    </div>
+                    <Badge className="bg-green-100 text-green-800 border-green-300">
+                      +9 points possible
+                    </Badge>
+                  </div>
                 </div>
-                <div className="flex items-center justify-between p-4 bg-muted/50 rounded-lg">
-                  <div>
-                    <h4 className="font-semibold">AI Readability</h4>
-                    <p className="text-sm text-muted-foreground">
-                      Enhance content structure for AI comprehension
-                    </p>
-                  </div>
-                  <Badge className="bg-blue-100 text-blue-800 border-blue-300">
-                    +13 points possible
-                  </Badge>
-                </div>
-                <div className="flex items-center justify-between p-4 bg-muted/50 rounded-lg">
-                  <div>
-                    <h4 className="font-semibold">Meta Optimization</h4>
-                    <p className="text-sm text-muted-foreground">
-                      Optimize titles and descriptions for AI discovery
-                    </p>
-                  </div>
-                  <Badge className="bg-green-100 text-green-800 border-green-300">
-                    +9 points possible
-                  </Badge>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </TabsContent>
-      </Tabs>
+              </CardContent>
+            </Card>
+          </TabsContent>
+        </Tabs>
+      </div>
     </main>
   );
 }
