@@ -7,6 +7,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { LogIn, ArrowRight, Sparkles, Brain } from 'lucide-react';
+import { Logo } from '@/components/logo';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -30,9 +31,8 @@ export default function LoginPage() {
       {/* Login Card */}
       <Card className="w-full max-w-md mx-4 bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-700 shadow-2xl">
         <CardHeader className="text-center pb-4">
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <span className="text-blue-400 font-bold text-2xl">//</span>
-            <span className="text-2xl font-bold text-white">Quoted</span>
+          <div className="flex items-center justify-center mb-4">
+            <Logo size="lg" />
           </div>
           <CardTitle className="text-xl font-semibold text-gray-900 dark:text-white">Welcome Back</CardTitle>
           <CardDescription className="text-gray-600 dark:text-gray-300">
