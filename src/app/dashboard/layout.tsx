@@ -57,40 +57,40 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex h-screen">
-      {/* Top Banner - Full Width */}
-      <div className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border/50 dark:bg-gray-900/80 dark:border-gray-700">
-        <div className="flex h-16 items-center justify-between px-4 lg:px-6">
-          {/* Left side - Menu and Logo */}
-          <div className="flex items-center gap-4">
-            <SidebarTrigger className="md:hidden hover:bg-primary/10 rounded-lg" />
-            <Link href="/" className="hover:opacity-80 transition-opacity">
-              <LogoWrapper size="md" />
-            </Link>
-          </div>
-          
-          {/* Right side - Actions */}
-          <div className="flex items-center gap-2">
-            {/* Notifications */}
-            <Button variant="ghost" size="icon" className="h-9 w-9 hover:bg-primary/10 rounded-xl">
-              <Bell className="h-4 w-4" />
-              <span className="sr-only">Notifications</span>
-            </Button>
+    <SidebarProvider>
+      <div className="flex h-screen">
+        {/* Top Banner - Full Width */}
+        <div className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border/50 dark:bg-gray-900/80 dark:border-gray-700">
+          <div className="flex h-16 items-center justify-between px-4 lg:px-6">
+            {/* Left side - Menu and Logo */}
+            <div className="flex items-center gap-4">
+              <SidebarTrigger className="md:hidden hover:bg-primary/10 rounded-lg" />
+              <Link href="/" className="hover:opacity-80 transition-opacity">
+                <LogoWrapper size="md" />
+              </Link>
+            </div>
             
-            {/* Theme Toggle */}
-            <ThemeToggle />
-            
-            {/* Settings */}
-            <Button variant="outline" size="icon" className="h-9 w-9 hover:bg-primary/10 border-border/50 rounded-xl">
-              <Settings className="h-4 w-4" />
-              <span className="sr-only">Settings</span>
-            </Button>
+            {/* Right side - Actions */}
+            <div className="flex items-center gap-2">
+              {/* Notifications */}
+              <Button variant="ghost" size="icon" className="h-9 w-9 hover:bg-primary/10 rounded-xl">
+                <Bell className="h-4 w-4" />
+                <span className="sr-only">Notifications</span>
+              </Button>
+              
+              {/* Theme Toggle */}
+              <ThemeToggle />
+              
+              {/* Settings */}
+              <Button variant="outline" size="icon" className="h-9 w-9 hover:bg-primary/10 border-border/50 rounded-xl">
+                <Settings className="h-4 w-4" />
+                <span className="sr-only">Settings</span>
+              </Button>
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Sidebar - Below Top Banner */}
-      <SidebarProvider>
+        {/* Sidebar - Below Top Banner */}
         <Sidebar className="border-r-0 bg-gradient-to-b from-sidebar-background to-sidebar-background/50 backdrop-blur-xl dark:from-gray-900 dark:to-gray-800 mt-16">
           <SidebarHeader className="border-b border-border/50 bg-gradient-to-r from-primary/5 to-primary/10 backdrop-blur-sm dark:from-gray-800 dark:to-gray-700">
             <div className="flex items-center justify-center p-2">
@@ -177,7 +177,7 @@ export default function DashboardLayout({
             </div>
           </div>
         </SidebarInset>
-      </SidebarProvider>
-    </div>
+      </div>
+    </SidebarProvider>
   );
 }
