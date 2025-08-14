@@ -121,8 +121,9 @@ export default function EnhancedAuditResultsPage() {
 
   if (isLoading) {
     return (
-      <main className="flex flex-1 flex-col items-center justify-center min-h-[calc(100vh-4rem)] p-4">
-        <div className="text-center space-y-6 max-w-md mx-auto">
+      <div className="fixed inset-0 flex items-center justify-center bg-background/95 backdrop-blur-sm z-50">
+        <main className="flex flex-col items-center justify-center p-4 w-full max-w-md">
+          <div className="text-center space-y-6">
           {/* Loading Icon */}
           <div className="relative">
             <div className="p-4 rounded-2xl bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg mx-auto w-fit">
@@ -251,6 +252,7 @@ export default function EnhancedAuditResultsPage() {
           </p>
         </div>
       </main>
+        </div>
     );
   }
 
