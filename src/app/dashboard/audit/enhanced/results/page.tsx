@@ -121,8 +121,8 @@ export default function EnhancedAuditResultsPage() {
 
   if (isLoading) {
     return (
-      <main className="flex flex-1 flex-col items-center justify-center min-h-screen p-4">
-        <div className="text-center space-y-6 max-w-md">
+      <main className="flex flex-1 flex-col items-center justify-center min-h-[calc(100vh-4rem)] p-4">
+        <div className="text-center space-y-6 max-w-md mx-auto">
           {/* Loading Icon */}
           <div className="relative">
             <div className="p-4 rounded-2xl bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg mx-auto w-fit">
@@ -255,7 +255,7 @@ export default function EnhancedAuditResultsPage() {
   }
 
   return (
-    <main className="flex flex-1 flex-col gap-8 p-4 lg:gap-10 lg:p-8">
+    <main className="flex flex-1 flex-col gap-8 p-4 lg:gap-10 lg:p-8 max-w-7xl mx-auto">
       {/* Header with Back Button */}
       <div className="flex items-center gap-4">
         <Button 
