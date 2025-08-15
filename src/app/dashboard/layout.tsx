@@ -7,7 +7,8 @@ import {
   Zap,
   ChartNoAxesColumnIncreasing,
   User,
-  Bell
+  Bell,
+  Database
 } from 'lucide-react';
 import {
   SidebarProvider,
@@ -47,6 +48,13 @@ const navigationItems = [
     href: '/dashboard/analytics',
     icon: ChartNoAxesColumnIncreasing,
     description: 'Performance tracking',
+    badge: null
+  },
+  {
+    title: 'Cache',
+    href: '/dashboard/cache',
+    icon: Database,
+    description: 'Manage audit cache',
     badge: null
   }
 ];

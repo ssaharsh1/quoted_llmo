@@ -11,14 +11,18 @@ import {
   ArrowLeft, 
   Loader2,
   Zap,
-  Globe
+  Globe,
+  Database
 } from 'lucide-react';
 import { enhancedAuditUrlAction, type EnhancedAuditState } from '@/app/actions';
 import { EnhancedAuditReport } from '@/components/enhanced-audit-report';
+import { useAuditCacheContext } from '@/contexts/audit-cache-context';
+import { formatDistanceToNow } from 'date-fns';
 
 export default function EnhancedAuditResultsPage() {
   const searchParams = useSearchParams();
   const router = useRouter();
+  const { getCachedAudit, cacheAudit } = useAuditCacheContext();
   
   const url = searchParams.get('url');
   const userAgent = searchParams.get('userAgent') || 'gptbot';
@@ -30,6 +34,8 @@ export default function EnhancedAuditResultsPage() {
     message: null,
     data: null,
   });
+  
+  const [isFromCache, setIsFromCache] = useState(false);
 
   useEffect(() => {
     console.log('Enhanced Audit Results - Component mounted', { url, userAgent });
@@ -37,6 +43,17 @@ export default function EnhancedAuditResultsPage() {
     if (!url) {
       console.log('Enhanced Audit Results - No URL provided, redirecting');
       router.push('/dashboard/audit/enhanced');
+      return;
+    }
+
+    // Check cache first
+    const cachedResult = getCachedAudit(url, userAgent);
+    if (cachedResult && cachedResult.data) {
+      console.log('Enhanced Audit Results - Found cached result, using cache');
+      setAuditResult(cachedResult);
+      setIsLoading(false);
+      setCurrentStage('complete');
+      setIsFromCache(true);
       return;
     }
 
@@ -95,6 +112,12 @@ export default function EnhancedAuditResultsPage() {
         }
         setCurrentStage('complete');
         setAuditResult(result);
+        
+        // Cache the successful result
+        if (result.data) {
+          cacheAudit(url, userAgent, result);
+          console.log('Enhanced Audit Results - Result cached successfully');
+        }
       } catch (error) {
         console.error('Enhanced Audit Results - Server action failed', error);
         console.error('Enhanced Audit Results - Error details:', {
@@ -288,6 +311,16 @@ export default function EnhancedAuditResultsPage() {
       {/* Results */}
       {auditResult.data && (
         <div className="space-y-6">
+          {/* Cache Indicator */}
+          {isFromCache && (
+            <div className="flex items-center justify-center">
+              <Badge className="bg-blue-100 text-blue-800 border-blue-300 dark:bg-blue-900/30 dark:text-blue-300 dark:border-blue-700 px-4 py-2 text-sm">
+                <Database className="mr-2 h-4 w-4" />
+                Loaded from cache • Results cached {formatDistanceToNow(Date.now(), { addSuffix: true })}
+              </Badge>
+            </div>
+          )}
+          
           <EnhancedAuditReport result={auditResult.data} url={url} userAgent={userAgent} />
         </div>
       )}

@@ -11,8 +11,10 @@ import {
   Brain, 
   Globe,
   ArrowRight,
-  Zap
+  Zap,
+  Database
 } from 'lucide-react';
+import { useAuditCacheContext } from '@/contexts/audit-cache-context';
 
 interface UserAgent {
   value: string;
@@ -52,9 +54,12 @@ const userAgents = [
 
 export default function EnhancedAuditPage() {
   const router = useRouter();
+  const { getCacheStats } = useAuditCacheContext();
   const [selectedUserAgent, setSelectedUserAgent] = useState('llm-comprehensive');
   const [url, setUrl] = useState('');
   const [errors, setErrors] = useState<{url?: string[]}>({});
+  
+  const cacheStats = getCacheStats();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -174,6 +179,21 @@ export default function EnhancedAuditPage() {
                       Analysis includes technical crawling, schema detection, and AI optimization recommendations
                     </p>
                   </div>
+
+                  {/* Cache Info */}
+                  {cacheStats.total > 0 && (
+                    <div className="mt-4 p-3 rounded-lg bg-muted/50 dark:bg-gray-800/50 border border-border/50 dark:border-gray-600/50">
+                      <div className="flex items-center gap-2 text-sm text-muted-foreground dark:text-gray-300">
+                        <Database className="h-4 w-4" />
+                        <span>
+                          {cacheStats.valid} cached audits available • 
+                          <a href="/dashboard/cache" className="text-primary hover:underline ml-1">
+                            Manage cache
+                          </a>
+                        </span>
+                      </div>
+                    </div>
+                  )}
                 </form>
               </CardContent>
             </Card>
