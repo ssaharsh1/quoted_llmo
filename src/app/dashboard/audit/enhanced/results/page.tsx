@@ -15,39 +15,28 @@ import {
 } from 'lucide-react';
 import { enhancedAuditUrlAction, type EnhancedAuditState } from '@/app/actions';
 import { EnhancedAuditReport } from '@/components/enhanced-audit-report';
-import { useAuditPersistence } from '@/hooks/use-audit-persistence';
 
 export default function EnhancedAuditResultsPage() {
   const searchParams = useSearchParams();
   const router = useRouter();
   
-  const urlParam = searchParams.get('url');
-  const userAgentParam = searchParams.get('userAgent') || undefined;
+  const url = searchParams.get('url');
+  const userAgent = searchParams.get('userAgent') || 'gptbot';
   
   const [isLoading, setIsLoading] = useState(true);
   const [currentStage, setCurrentStage] = useState<'cloudflare' | 'ai-eval' | 'report' | 'complete'>('cloudflare');
-  const { auditResult, latestUrl, latestUserAgent, persistAuditResult, clearAuditResult } = useAuditPersistence();
-  const url = urlParam || latestUrl || '';
-  const userAgent = userAgentParam || latestUserAgent || 'gptbot';
+  const [auditResult, setAuditResult] = useState<EnhancedAuditState>({
+    error: null,
+    message: null,
+    data: null,
+  });
 
   useEffect(() => {
-    console.log('Enhanced Audit Results - Component mounted', { urlParam, latestUrl, userAgentParam, latestUserAgent });
+    console.log('Enhanced Audit Results - Component mounted', { url, userAgent });
     
     if (!url) {
-      // If no URL anywhere, go back to form
+      console.log('Enhanced Audit Results - No URL provided, redirecting');
       router.push('/dashboard/audit/enhanced');
-      return;
-    }
-
-    // If we have a persisted result and either:
-    // - There are no URL params (user navigated back to results), or
-    // - The URL/userAgent match the persisted ones
-    const hasPersisted = !!auditResult.data;
-    const isSameAsPersisted = hasPersisted && latestUrl === url && (latestUserAgent || 'gptbot') === (userAgent || 'gptbot');
-    if (hasPersisted && (!urlParam || isSameAsPersisted)) {
-      console.log('Enhanced Audit Results - Using persisted result, not re-running audit');
-      setIsLoading(false);
-      setCurrentStage('complete');
       return;
     }
 
@@ -75,11 +64,9 @@ export default function EnhancedAuditResultsPage() {
           throw new Error('enhancedAuditUrlAction is not a function');
         }
         
-        // Simulate progress updates only when beginning a run
-        if (isLoading) {
-          setTimeout(() => setCurrentStage('ai-eval'), 2000);
-          setTimeout(() => setCurrentStage('report'), 4000);
-        }
+        // Simulate progress updates
+        setTimeout(() => setCurrentStage('ai-eval'), 2000);
+        setTimeout(() => setCurrentStage('report'), 4000);
         
         const result = await enhancedAuditUrlAction(auditResult, formData);
         console.log('Enhanced Audit Results - Server action completed', result);
@@ -107,7 +94,7 @@ export default function EnhancedAuditResultsPage() {
           }
         }
         setCurrentStage('complete');
-        persistAuditResult(result, url, userAgent);
+        setAuditResult(result);
       } catch (error) {
         console.error('Enhanced Audit Results - Server action failed', error);
         console.error('Enhanced Audit Results - Error details:', {
@@ -115,11 +102,11 @@ export default function EnhancedAuditResultsPage() {
           stack: error instanceof Error ? error.stack : undefined,
           type: error instanceof Error ? error.constructor.name : 'Unknown'
         });
-        persistAuditResult({
+        setAuditResult({
           error: null,
           message: 'Failed to perform enhanced audit. Please try again later.',
           data: null,
-        }, url, userAgent);
+        });
       } finally {
         setIsLoading(false);
       }
@@ -276,26 +263,12 @@ export default function EnhancedAuditResultsPage() {
         <Button 
           variant="ghost" 
           size="sm" 
-          onClick={() => router.push('/dashboard/audit/enhanced?new=1')}
+          onClick={() => router.push('/dashboard/audit/enhanced')}
           className="hover:bg-primary/10"
         >
           <ArrowLeft className="h-4 w-4 mr-2" />
           New Audit
         </Button>
-        {auditResult.data && (
-          <Button 
-            variant="outline" 
-            size="sm" 
-            onClick={() => {
-              clearAuditResult();
-              setIsLoading(false);
-              setCurrentStage('cloudflare');
-            }}
-            className="hover:bg-primary/10"
-          >
-            Clear Results
-          </Button>
-        )}
         <div className="flex-1">
           <h1 className="text-2xl font-bold">Enhanced LLMO Audit Results</h1>
           <p className="text-muted-foreground">Advanced technical analysis completed</p>
