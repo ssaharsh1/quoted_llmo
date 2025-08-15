@@ -182,16 +182,16 @@ export function EnhancedAuditReport({ result, url, userAgent }: EnhancedAuditRep
       </Card>
 
       {/* AI Improvements Section */}
-      <Card className="shadow-md border-l-4 border-l-purple-500">
+      <Card className="shadow-md border-l-4 border-l-purple-500 bg-card dark:bg-gray-900/50 border dark:border-gray-700">
         <CardHeader>
-          <CardTitle className="flex items-center gap-3">
+          <CardTitle className="flex items-center gap-3 text-foreground dark:text-gray-100">
             <Sparkles className="h-6 w-6 text-purple-500" />
             AI-Powered Improvement Recommendations
           </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
-            <p className="text-sm text-muted-foreground">
+            <p className="text-sm text-muted-foreground dark:text-gray-300">
               Get detailed, step-by-step instructions on how to improve your LLMO score using AI analysis.
             </p>
             
@@ -216,42 +216,42 @@ export function EnhancedAuditReport({ result, url, userAgent }: EnhancedAuditRep
             ) : (
               <div className="space-y-6">
                 {aiImprovements.error ? (
-                  <div className="p-4 rounded-lg bg-red-50 border border-red-200">
-                    <p className="text-red-700 text-sm">{aiImprovements.error}</p>
+                  <div className="p-4 rounded-lg bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800">
+                    <p className="text-red-700 dark:text-red-300 text-sm">{aiImprovements.error}</p>
                   </div>
                 ) : !aiImprovements.summary ? (
-                  <div className="p-4 rounded-lg bg-yellow-50 border border-yellow-200">
-                    <p className="text-yellow-700 text-sm">Invalid response format. Please try again.</p>
+                  <div className="p-4 rounded-lg bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800">
+                    <p className="text-yellow-700 dark:text-yellow-300 text-sm">Invalid response format. Please try again.</p>
                   </div>
                 ) : (
                   <>
                     {/* Summary */}
-                    <div className="p-4 rounded-lg bg-purple-50 border border-purple-200">
-                      <h4 className="font-semibold mb-3 flex items-center gap-2 text-purple-800">
+                    <div className="p-4 rounded-lg bg-purple-50 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-800">
+                      <h4 className="font-semibold mb-3 flex items-center gap-2 text-purple-800 dark:text-purple-300">
                         <Sparkles className="h-4 w-4" />
                         AI Improvement Summary
                       </h4>
-                      <p className="text-sm text-purple-700">{aiImprovements.summary}</p>
+                      <p className="text-sm text-purple-700 dark:text-purple-200">{aiImprovements.summary}</p>
                     </div>
 
                     {/* Quick Wins */}
                     {aiImprovements.quickWins && Array.isArray(aiImprovements.quickWins) && aiImprovements.quickWins.length > 0 && (
                       <div className="space-y-3">
-                        <h5 className="font-semibold text-purple-800 flex items-center gap-2">
+                        <h5 className="font-semibold text-purple-800 dark:text-purple-300 flex items-center gap-2">
                           <Zap className="h-4 w-4" />
                           Quick Wins
                         </h5>
                         <div className="grid gap-3">
                           {aiImprovements.quickWins.map((win: any, index: number) => (
-                            <div key={index} className="p-3 rounded-lg bg-green-50 border border-green-200">
+                            <div key={index} className="p-3 rounded-lg bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800">
                               <div className="flex items-center justify-between mb-2">
-                                <h6 className="font-medium text-green-800">{win.title}</h6>
-                                <Badge className="text-xs bg-green-100 text-green-800">
+                                <h6 className="font-medium text-green-800 dark:text-green-300">{win.title}</h6>
+                                <Badge className="text-xs bg-green-100 dark:bg-green-800 text-green-800 dark:text-green-200">
                                   {win.timeToComplete}
                                 </Badge>
                               </div>
-                              <p className="text-sm text-green-700 mb-2">{win.description}</p>
-                              <p className="text-xs text-green-600">Impact: {win.impact}</p>
+                              <p className="text-sm text-green-700 dark:text-green-200 mb-2">{win.description}</p>
+                              <p className="text-xs text-green-600 dark:text-green-300">Impact: {win.impact}</p>
                             </div>
                           ))}
                         </div>
@@ -261,26 +261,26 @@ export function EnhancedAuditReport({ result, url, userAgent }: EnhancedAuditRep
                     {/* Priority Areas */}
                     {aiImprovements.priorityAreas && Array.isArray(aiImprovements.priorityAreas) && aiImprovements.priorityAreas.length > 0 && (
                       <div className="space-y-4">
-                        <h5 className="font-semibold text-purple-800 flex items-center gap-2">
+                        <h5 className="font-semibold text-purple-800 dark:text-purple-300 flex items-center gap-2">
                           <Target className="h-4 w-4" />
                           Priority Improvement Areas
                         </h5>
                         <div className="space-y-4">
                           {aiImprovements.priorityAreas.map((area: any, index: number) => (
-                            <div key={index} className="border border-purple-200 rounded-lg overflow-hidden">
-                              <div className="p-4 bg-purple-50 border-b border-purple-200">
+                            <div key={index} className="border border-purple-200 dark:border-purple-800 rounded-lg overflow-hidden bg-card dark:bg-gray-900/50">
+                              <div className="p-4 bg-purple-50 dark:bg-purple-900/20 border-b border-purple-200 dark:border-purple-800">
                                 <div className="flex items-center justify-between mb-2">
-                                  <h6 className="font-semibold text-purple-800">{area.title}</h6>
+                                  <h6 className="font-semibold text-purple-800 dark:text-purple-300">{area.title}</h6>
                                   <Badge className={`text-xs ${
-                                    area.priority === 'High' ? 'bg-red-100 text-red-800' :
-                                    area.priority === 'Medium' ? 'bg-yellow-100 text-yellow-800' :
-                                    'bg-blue-100 text-blue-800'
+                                    area.priority === 'High' ? 'bg-red-100 dark:bg-red-800 text-red-800 dark:text-red-200' :
+                                    area.priority === 'Medium' ? 'bg-yellow-100 dark:bg-yellow-800 text-yellow-800 dark:text-yellow-200' :
+                                    'bg-blue-100 dark:bg-blue-800 text-blue-800 dark:text-blue-200'
                                   }`}>
                                     {area.priority} Priority
                                   </Badge>
                                 </div>
-                                <p className="text-sm text-purple-700 mb-2">{area.description}</p>
-                                <div className="flex items-center gap-4 text-xs text-purple-600">
+                                <p className="text-sm text-purple-700 dark:text-purple-200 mb-2">{area.description}</p>
+                                <div className="flex items-center gap-4 text-xs text-purple-600 dark:text-purple-300">
                                   <span>Current: {area.currentScore}/100</span>
                                   <span>Target: {area.targetScore}/100</span>
                                 </div>
@@ -289,27 +289,27 @@ export function EnhancedAuditReport({ result, url, userAgent }: EnhancedAuditRep
                                 {Array.isArray(area.steps) && area.steps.map((step: any, stepIndex: number) => (
                                   <div key={stepIndex} className="space-y-2">
                                     <div className="flex items-start gap-3">
-                                      <div className="w-6 h-6 rounded-full bg-purple-100 text-purple-600 text-xs font-bold flex items-center justify-center mt-0.5">
+                                      <div className="w-6 h-6 rounded-full bg-purple-100 dark:bg-purple-800 text-purple-600 dark:text-purple-300 text-xs font-bold flex items-center justify-center mt-0.5">
                                         {stepIndex + 1}
                                       </div>
                                       <div className="flex-1 space-y-2">
-                                        <h6 className="font-medium text-sm">{step.title}</h6>
-                                        <p className="text-xs text-muted-foreground">{step.description}</p>
+                                        <h6 className="font-medium text-sm text-foreground dark:text-gray-100">{step.title}</h6>
+                                        <p className="text-xs text-muted-foreground dark:text-gray-300">{step.description}</p>
                                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
-                                          <div className="p-2 bg-muted/30 rounded">
-                                            <span className="font-medium">File:</span> {step.file}
+                                          <div className="p-2 bg-muted/30 dark:bg-gray-800/50 rounded border dark:border-gray-600">
+                                            <span className="font-medium text-foreground dark:text-gray-200">File:</span> <span className="text-foreground dark:text-gray-300">{step.file}</span>
                                           </div>
-                                          <div className="p-2 bg-muted/30 rounded">
-                                            <span className="font-medium">Action:</span> {step.action}
+                                          <div className="p-2 bg-muted/30 dark:bg-gray-800/50 rounded border dark:border-gray-600">
+                                            <span className="font-medium text-foreground dark:text-gray-200">Action:</span> <span className="text-foreground dark:text-gray-300">{step.action}</span>
                                           </div>
                                         </div>
                                         {step.codeExample && (
-                                          <div className="p-2 bg-gray-100 rounded text-xs font-mono">
-                                            <div className="font-medium mb-1">Code Example:</div>
-                                            <pre className="whitespace-pre-wrap break-words">{step.codeExample}</pre>
+                                          <div className="p-2 bg-gray-100 dark:bg-gray-800 rounded text-xs font-mono border dark:border-gray-600">
+                                            <div className="font-medium mb-1 text-foreground dark:text-gray-100">Code Example:</div>
+                                            <pre className="whitespace-pre-wrap break-words text-foreground dark:text-gray-200">{step.codeExample}</pre>
                                           </div>
                                         )}
-                                        <div className="text-xs text-purple-600">
+                                        <div className="text-xs text-purple-600 dark:text-purple-300">
                                           <span className="font-medium">Expected Impact:</span> {step.expectedImpact}
                                         </div>
                                       </div>
@@ -325,26 +325,26 @@ export function EnhancedAuditReport({ result, url, userAgent }: EnhancedAuditRep
 
                     {/* Expected Results */}
                     {aiImprovements.expectedResults && typeof aiImprovements.expectedResults === 'object' && (
-                      <div className="p-4 rounded-lg bg-blue-50 border border-blue-200">
-                        <h5 className="font-semibold mb-3 flex items-center gap-2 text-blue-800">
+                      <div className="p-4 rounded-lg bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800">
+                        <h5 className="font-semibold mb-3 flex items-center gap-2 text-blue-800 dark:text-blue-300">
                           <TrendingUp className="h-4 w-4" />
                           Expected Results
                         </h5>
                         <div className="space-y-2 text-sm">
                           <div className="flex items-center gap-2">
-                            <span className="font-medium text-blue-700">Score Improvement:</span>
-                            <span className="text-blue-600">{aiImprovements.expectedResults.overallScoreImprovement}</span>
+                            <span className="font-medium text-blue-700 dark:text-blue-300">Score Improvement:</span>
+                            <span className="text-blue-600 dark:text-blue-200">{aiImprovements.expectedResults.overallScoreImprovement}</span>
                           </div>
                           <div className="flex items-center gap-2">
-                            <span className="font-medium text-blue-700">Time to Complete:</span>
-                            <span className="text-blue-600">{aiImprovements.expectedResults.timeToComplete}</span>
+                            <span className="font-medium text-blue-700 dark:text-blue-300">Time to Complete:</span>
+                            <span className="text-blue-600 dark:text-blue-200">{aiImprovements.expectedResults.timeToComplete}</span>
                           </div>
                           <div className="mt-3">
-                            <span className="font-medium text-blue-700">Key Metrics:</span>
+                            <span className="font-medium text-blue-700 dark:text-blue-300">Key Metrics:</span>
                             <ul className="mt-1 space-y-1">
                               {Array.isArray(aiImprovements.expectedResults.keyMetrics) && aiImprovements.expectedResults.keyMetrics.map((metric: string, index: number) => (
-                                <li key={index} className="text-blue-600 text-xs flex items-center gap-1">
-                                  <div className="w-1 h-1 rounded-full bg-blue-400"></div>
+                                <li key={index} className="text-blue-600 dark:text-blue-200 text-xs flex items-center gap-1">
+                                  <div className="w-1 h-1 rounded-full bg-blue-400 dark:bg-blue-300"></div>
                                   {metric}
                                 </li>
                               ))}
