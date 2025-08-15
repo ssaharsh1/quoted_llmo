@@ -288,13 +288,6 @@ export default function EnhancedAuditResultsPage() {
       {/* Results */}
       {auditResult.data && (
         <div className="space-y-6">
-          <div className="flex items-center justify-center mb-6">
-            <Badge className="bg-emerald-100 text-emerald-800 border-emerald-300 px-4 py-2 text-sm">
-              <CheckCircle2 className="mr-2 h-4 w-4" />
-              Enhanced Analysis Complete
-            </Badge>
-          </div>
-          
           <EnhancedAuditReport result={auditResult.data} url={url} userAgent={userAgent} />
         </div>
       )}

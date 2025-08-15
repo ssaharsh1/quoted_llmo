@@ -384,11 +384,11 @@ export function EnhancedAuditReport({ result, url, userAgent }: EnhancedAuditRep
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div className="text-center p-3 rounded-lg bg-muted/50">
+            <div className="text-center p-3 rounded-lg bg-muted/50 dark:bg-gray-800/50 border border-border/50 dark:border-gray-600/50">
               <div className="text-2xl font-bold text-primary">{result.technical_insights.redirects}</div>
-              <div className="text-sm text-muted-foreground">Redirects</div>
+              <div className="text-sm text-muted-foreground dark:text-gray-300">Redirects</div>
             </div>
-            <div className="text-center p-3 rounded-lg bg-muted/50">
+            <div className="text-center p-3 rounded-lg bg-muted/50 dark:bg-gray-800/50 border border-border/50 dark:border-gray-600/50">
               <div className="text-2xl font-bold">
                 {result.technical_insights.robots_accessible ? (
                   <span className="text-green-600">✓</span>
@@ -396,9 +396,9 @@ export function EnhancedAuditReport({ result, url, userAgent }: EnhancedAuditRep
                   <span className="text-red-600">✗</span>
                 )}
               </div>
-              <div className="text-sm text-muted-foreground">robots.txt Access</div>
+              <div className="text-sm text-muted-foreground dark:text-gray-300">robots.txt Access</div>
             </div>
-            <div className="text-center p-3 rounded-lg bg-muted/50">
+            <div className="text-center p-3 rounded-lg bg-muted/50 dark:bg-gray-800/50 border border-border/50 dark:border-gray-600/50">
               <div className="text-2xl font-bold">
                 {result.technical_insights.llms_txt_present ? (
                   <span className="text-green-600">✓</span>
@@ -406,31 +406,31 @@ export function EnhancedAuditReport({ result, url, userAgent }: EnhancedAuditRep
                   <span className="text-red-600">✗</span>
                 )}
               </div>
-              <div className="text-sm text-muted-foreground">llms.txt Present</div>
+              <div className="text-sm text-muted-foreground dark:text-gray-300">llms.txt Present</div>
             </div>
-            <div className="text-center p-3 rounded-lg bg-muted/50">
+            <div className="text-center p-3 rounded-lg bg-muted/50 dark:bg-gray-800/50 border border-border/50 dark:border-gray-600/50">
               <div className="text-2xl font-bold text-primary">
                 {result.technical_insights.schema_types_found.length}
               </div>
-              <div className="text-sm text-muted-foreground">Schema Types</div>
+              <div className="text-sm text-muted-foreground dark:text-gray-300">Schema Types</div>
             </div>
           </div>
           
           {/* Enhanced Content Analysis */}
           <div className="mt-6 grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div className="text-center p-3 rounded-lg bg-muted/50">
+            <div className="text-center p-3 rounded-lg bg-muted/50 dark:bg-gray-800/50 border border-border/50 dark:border-gray-600/50">
               <div className="text-2xl font-bold text-primary">
                 {result.technical_insights.contentStructure?.wordCount || 0}
               </div>
-              <div className="text-sm text-muted-foreground">Word Count</div>
+              <div className="text-sm text-muted-foreground dark:text-gray-300">Word Count</div>
             </div>
-            <div className="text-center p-3 rounded-lg bg-muted/50">
+            <div className="text-center p-3 rounded-lg bg-muted/50 dark:bg-gray-800/50 border border-border/50 dark:border-gray-600/50">
               <div className="text-2xl font-bold text-primary">
                 {result.technical_insights.linkAnalysis?.totalLinks || 0}
               </div>
-              <div className="text-sm text-muted-foreground">Total Links</div>
+              <div className="text-sm text-muted-foreground dark:text-gray-300">Total Links</div>
             </div>
-            <div className="text-center p-3 rounded-lg bg-muted/50">
+            <div className="text-center p-3 rounded-lg bg-muted/50 dark:bg-gray-800/50 border border-border/50 dark:border-gray-600/50">
               <div className="text-2xl font-bold">
                 {result.technical_insights.llmoAnalysis?.hasProperMetaTags ? (
                   <span className="text-green-600">✓</span>
@@ -438,9 +438,9 @@ export function EnhancedAuditReport({ result, url, userAgent }: EnhancedAuditRep
                   <span className="text-red-600">✗</span>
                 )}
               </div>
-              <div className="text-sm text-muted-foreground">Social Tags</div>
+              <div className="text-sm text-muted-foreground dark:text-gray-300">Social Tags</div>
             </div>
-            <div className="text-center p-3 rounded-lg bg-muted/50">
+            <div className="text-center p-3 rounded-lg bg-muted/50 dark:bg-gray-800/50 border border-border/50 dark:border-gray-600/50">
               <div className="text-2xl font-bold">
                 {result.technical_insights.llmoAnalysis?.hasCitations ? (
                   <span className="text-green-600">✓</span>
@@ -448,7 +448,7 @@ export function EnhancedAuditReport({ result, url, userAgent }: EnhancedAuditRep
                   <span className="text-red-600">✗</span>
                 )}
               </div>
-              <div className="text-sm text-muted-foreground">Citations</div>
+              <div className="text-sm text-muted-foreground dark:text-gray-300">Citations</div>
             </div>
           </div>
           
@@ -458,7 +458,7 @@ export function EnhancedAuditReport({ result, url, userAgent }: EnhancedAuditRep
               <h4 className="font-semibold mb-2">Detected Schema Types:</h4>
               <div className="flex flex-wrap gap-2">
                 {result.technical_insights.schema_types_found.map((schemaType, index) => (
-                  <Badge key={index} variant="outline" className="bg-blue-50 text-blue-700 border-blue-200">
+                  <Badge key={index} variant="outline" className="bg-blue-50 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 border-blue-200 dark:border-blue-600">
                     {schemaType}
                   </Badge>
                 ))}
@@ -467,7 +467,7 @@ export function EnhancedAuditReport({ result, url, userAgent }: EnhancedAuditRep
           )}
 
           {/* Heading Structure */}
-          <div className="mt-4 p-3 rounded-lg bg-muted/30">
+          <div className="mt-4 p-3 rounded-lg bg-muted/30 dark:bg-gray-800/30 border border-border/50 dark:border-gray-600/50">
             <h4 className="font-semibold mb-2">Heading Structure:</h4>
             <div className="grid grid-cols-3 gap-4 text-sm">
               <div>H1 Count: <span className="font-medium">{result.technical_insights.heading_structure.h1_count}</span></div>
