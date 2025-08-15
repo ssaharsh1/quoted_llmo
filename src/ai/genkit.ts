@@ -1,11 +1,11 @@
 import {genkit} from 'genkit';
 import {googleAI} from '@genkit-ai/googleai';
 
-// Prefer secure server-side var; fall back to public var only if explicitly provided
-const apiKey = process.env.GOOGLE_AI_API_KEY || process.env.NEXT_PUBLIC_GOOGLE_AI_API_KEY;
+// Genkit expects GEMINI_API_KEY or GOOGLE_API_KEY
+const apiKey = process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY || process.env.GOOGLE_AI_API_KEY;
 
 if (!apiKey) {
-  console.warn('⚠️ GOOGLE_AI_API_KEY (or NEXT_PUBLIC_GOOGLE_AI_API_KEY) not found. AI features will fail.');
+  console.warn('⚠️ GEMINI_API_KEY, GOOGLE_API_KEY, or GOOGLE_AI_API_KEY not found. AI features will fail.');
 }
 
 export const ai = genkit({
