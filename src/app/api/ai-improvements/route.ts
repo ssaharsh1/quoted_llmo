@@ -78,11 +78,12 @@ Structure the response as a JSON object with the specified schema.`,
 
 export async function POST(request: NextRequest) {
   try {
-    // Check if API key is configured
-    if (!process.env.GOOGLE_AI_API_KEY) {
-      console.error('AI Improvements Error: GOOGLE_AI_API_KEY not configured');
+    // Check if API key is configured (Genkit expects GEMINI_API_KEY or GOOGLE_API_KEY)
+    const apiKey = process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY || process.env.GOOGLE_AI_API_KEY;
+    if (!apiKey) {
+      console.error('AI Improvements Error: No API key found. Please set GEMINI_API_KEY, GOOGLE_API_KEY, or GOOGLE_AI_API_KEY');
       return NextResponse.json(
-        { error: 'AI service not configured. Please add GOOGLE_AI_API_KEY to your environment variables.' },
+        { error: 'AI service not configured. Please add an API key to your environment variables.' },
         { status: 500 }
       );
     }
