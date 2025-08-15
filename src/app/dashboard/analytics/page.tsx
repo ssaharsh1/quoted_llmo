@@ -120,14 +120,14 @@ export default function AnalyticsPage() {
     <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
       <div className="w-full max-w-[1600px] mx-auto space-y-6">
         {/* Header */}
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
             <h1 className="text-lg font-semibold md:text-2xl">LLMO Analytics</h1>
             <p className="text-muted-foreground">
               Track your LLMO performance and optimization progress
             </p>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 flex-wrap">
             <Select value={timeRange} onValueChange={setTimeRange}>
               <SelectTrigger className="w-32">
                 <SelectValue />
@@ -151,7 +151,7 @@ export default function AnalyticsPage() {
         </div>
 
         {/* Overview Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           <Card className="shadow-md">
             <CardContent className="pt-6">
               <div className="flex items-center justify-between">
@@ -303,12 +303,12 @@ export default function AnalyticsPage() {
               <CardContent>
                 <div className="space-y-4">
                   {recentAudits.map((audit, index) => (
-                    <div key={index} className="flex items-center justify-between p-4 border rounded-lg">
-                      <div className="flex-1">
-                        <p className="font-medium text-sm break-all pr-4">{audit.url}</p>
+                    <div key={index} className="flex flex-col sm:flex-row sm:items-center justify-between p-4 border rounded-lg gap-3">
+                      <div className="flex-1 min-w-0">
+                        <p className="font-medium text-sm break-all pr-0 sm:pr-4">{audit.url}</p>
                         <p className="text-xs text-muted-foreground mt-1">{audit.date}</p>
                       </div>
-                      <div className="flex items-center gap-3">
+                      <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
                         <Badge className={getScoreBadge(audit.score).color}>
                           {audit.score}/100
                         </Badge>
@@ -333,7 +333,7 @@ export default function AnalyticsPage() {
                 return (
                   <Card key={index} className="shadow-md">
                     <CardHeader>
-                      <div className="flex items-center justify-between">
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                         <div className="flex items-center gap-3">
                           <IconComponent className="h-6 w-6 text-primary" />
                           <div>
@@ -343,8 +343,8 @@ export default function AnalyticsPage() {
                             </CardDescription>
                           </div>
                         </div>
-                        <div className="flex items-center gap-3">
-                          <Badge variant="outline" className="text-green-800 bg-green-100 border-green-300">
+                        <div className="flex flex-col sm:flex-row sm:items-center gap-3">
+                          <Badge variant="outline" className="text-green-800 bg-green-100 border-green-300 w-fit">
                             {category.change} this month
                           </Badge>
                           <div className="text-right">
@@ -452,36 +452,36 @@ export default function AnalyticsPage() {
               </CardHeader>
               <CardContent>
                 <div className="grid gap-4">
-                  <div className="flex items-center justify-between p-4 bg-muted/50 rounded-lg">
-                    <div>
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-muted/50 rounded-lg gap-3">
+                    <div className="flex-1">
                       <h4 className="font-semibold">Content Quality</h4>
                       <p className="text-sm text-muted-foreground">
                         Improve E-E-A-T signals and author credibility
                       </p>
                     </div>
-                    <Badge className="bg-yellow-100 text-yellow-800 border-yellow-300">
+                    <Badge className="bg-yellow-100 text-yellow-800 border-yellow-300 w-fit">
                       +16 points possible
                     </Badge>
                   </div>
-                  <div className="flex items-center justify-between p-4 bg-muted/50 rounded-lg">
-                    <div>
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-muted/50 rounded-lg gap-3">
+                    <div className="flex-1">
                       <h4 className="font-semibold">AI Readability</h4>
                       <p className="text-sm text-muted-foreground">
                         Enhance content structure for AI comprehension
                       </p>
                     </div>
-                    <Badge className="bg-blue-100 text-blue-800 border-blue-300">
+                    <Badge className="bg-blue-100 text-blue-800 border-blue-300 w-fit">
                       +13 points possible
                     </Badge>
                   </div>
-                  <div className="flex items-center justify-between p-4 bg-muted/50 rounded-lg">
-                    <div>
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-muted/50 rounded-lg gap-3">
+                    <div className="flex-1">
                       <h4 className="font-semibold">Meta Optimization</h4>
                       <p className="text-sm text-muted-foreground">
                         Optimize titles and descriptions for AI discovery
                       </p>
                     </div>
-                    <Badge className="bg-green-100 text-green-800 border-green-300">
+                    <Badge className="bg-green-100 text-green-800 border-green-300 w-fit">
                       +9 points possible
                     </Badge>
                   </div>
