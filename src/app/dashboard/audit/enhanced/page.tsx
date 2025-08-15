@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Card, CardContent } from '@/components/ui/card';
@@ -54,6 +54,7 @@ const userAgents = [
 
 export default function EnhancedAuditPage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const { auditResult, clearAuditResult } = useAuditPersistence();
   const [selectedUserAgent, setSelectedUserAgent] = useState('llm-comprehensive');
   const [url, setUrl] = useState('');
@@ -78,6 +79,15 @@ export default function EnhancedAuditPage() {
       setErrors({ url: ['Please enter a valid URL.'] });
     }
   };
+
+  // If there is a previous audit and user didn't explicitly request a new one, send them to results
+  const forceNew = searchParams.get('new') === '1';
+  if (auditResult.data && !forceNew) {
+    // Show the full results page as the default view
+    if (typeof window !== 'undefined') {
+      router.push('/dashboard/audit/enhanced/results');
+    }
+  }
 
   return (
     <main className="flex flex-1 h-full p-6">

@@ -21,18 +21,20 @@ export default function EnhancedAuditResultsPage() {
   const searchParams = useSearchParams();
   const router = useRouter();
   
-  const url = searchParams.get('url');
-  const userAgent = searchParams.get('userAgent') || 'gptbot';
+  const urlParam = searchParams.get('url');
+  const userAgentParam = searchParams.get('userAgent') || undefined;
   
   const [isLoading, setIsLoading] = useState(true);
   const [currentStage, setCurrentStage] = useState<'cloudflare' | 'ai-eval' | 'report' | 'complete'>('cloudflare');
-  const { auditResult, persistAuditResult, clearAuditResult } = useAuditPersistence();
+  const { auditResult, latestUrl, latestUserAgent, persistAuditResult, clearAuditResult } = useAuditPersistence();
+  const url = urlParam || latestUrl || '';
+  const userAgent = userAgentParam || latestUserAgent || 'gptbot';
 
   useEffect(() => {
     console.log('Enhanced Audit Results - Component mounted', { url, userAgent });
     
     if (!url) {
-      console.log('Enhanced Audit Results - No URL provided, redirecting');
+      // If no URL anywhere, go back to form
       router.push('/dashboard/audit/enhanced');
       return;
     }
@@ -99,7 +101,7 @@ export default function EnhancedAuditResultsPage() {
           }
         }
         setCurrentStage('complete');
-        persistAuditResult(result);
+        persistAuditResult(result, url, userAgent);
       } catch (error) {
         console.error('Enhanced Audit Results - Server action failed', error);
         console.error('Enhanced Audit Results - Error details:', {
@@ -111,7 +113,7 @@ export default function EnhancedAuditResultsPage() {
           error: null,
           message: 'Failed to perform enhanced audit. Please try again later.',
           data: null,
-        });
+        }, url, userAgent);
       } finally {
         setIsLoading(false);
       }
@@ -268,7 +270,7 @@ export default function EnhancedAuditResultsPage() {
         <Button 
           variant="ghost" 
           size="sm" 
-          onClick={() => router.push('/dashboard/audit/enhanced')}
+          onClick={() => router.push('/dashboard/audit/enhanced?new=1')}
           className="hover:bg-primary/10"
         >
           <ArrowLeft className="h-4 w-4 mr-2" />

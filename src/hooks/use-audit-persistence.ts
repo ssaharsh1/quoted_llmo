@@ -1,50 +1,75 @@
 import { useState, useEffect } from 'react';
 import { type EnhancedAuditState } from '@/app/actions';
 
-const STORAGE_KEY = 'quoted_current_audit';
+const STORAGE_KEY = 'quoted_current_audit_v2';
+
+type PersistedAudit = {
+  state: EnhancedAuditState;
+  url?: string;
+  userAgent?: string;
+  timestamp: number;
+};
 
 export function useAuditPersistence() {
-  const [auditResult, setAuditResult] = useState<EnhancedAuditState>({
-    error: null,
-    message: null,
-    data: null,
-  });
+  const [persisted, setPersisted] = useState<PersistedAudit | null>(null);
 
-  // Load audit result from localStorage on mount
+  // Load persisted audit from localStorage on mount
   useEffect(() => {
     try {
       const stored = localStorage.getItem(STORAGE_KEY);
       if (stored) {
-        const parsed = JSON.parse(stored);
-        setAuditResult(parsed);
+        const parsed = JSON.parse(stored) as PersistedAudit;
+        setPersisted(parsed);
       }
     } catch (error) {
-      console.error('Failed to load audit result from localStorage:', error);
+      console.error('Failed to load audit from localStorage:', error);
+      setPersisted(null);
     }
   }, []);
 
-  // Save audit result to localStorage whenever it changes
-  const persistAuditResult = (result: EnhancedAuditState) => {
-    setAuditResult(result);
+  const auditResult: EnhancedAuditState = persisted?.state ?? {
+    error: null,
+    message: null,
+    data: null,
+  };
+
+  const latestUrl = persisted?.url;
+  const latestUserAgent = persisted?.userAgent;
+
+  // Save audit result + context to localStorage
+  const persistAuditResult = (
+    result: EnhancedAuditState,
+    url?: string,
+    userAgent?: string,
+  ) => {
+    const payload: PersistedAudit = {
+      state: result,
+      url,
+      userAgent,
+      timestamp: Date.now(),
+    };
+    setPersisted(payload);
     try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(result));
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
     } catch (error) {
-      console.error('Failed to save audit result to localStorage:', error);
+      console.error('Failed to save audit to localStorage:', error);
     }
   };
 
-  // Clear stored audit result
+  // Clear stored audit
   const clearAuditResult = () => {
-    setAuditResult({ error: null, message: null, data: null });
+    setPersisted(null);
     try {
       localStorage.removeItem(STORAGE_KEY);
     } catch (error) {
-      console.error('Failed to clear audit result from localStorage:', error);
+      console.error('Failed to clear audit from localStorage:', error);
     }
   };
 
   return {
     auditResult,
+    latestUrl,
+    latestUserAgent,
     persistAuditResult,
     clearAuditResult,
   };
