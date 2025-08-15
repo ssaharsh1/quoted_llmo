@@ -15,6 +15,7 @@ import {
 } from 'lucide-react';
 import { enhancedAuditUrlAction, type EnhancedAuditState } from '@/app/actions';
 import { EnhancedAuditReport } from '@/components/enhanced-audit-report';
+import { useAuditPersistence } from '@/hooks/use-audit-persistence';
 
 export default function EnhancedAuditResultsPage() {
   const searchParams = useSearchParams();
@@ -25,11 +26,7 @@ export default function EnhancedAuditResultsPage() {
   
   const [isLoading, setIsLoading] = useState(true);
   const [currentStage, setCurrentStage] = useState<'cloudflare' | 'ai-eval' | 'report' | 'complete'>('cloudflare');
-  const [auditResult, setAuditResult] = useState<EnhancedAuditState>({
-    error: null,
-    message: null,
-    data: null,
-  });
+  const { auditResult, persistAuditResult, clearAuditResult } = useAuditPersistence();
 
   useEffect(() => {
     console.log('Enhanced Audit Results - Component mounted', { url, userAgent });
@@ -102,7 +99,7 @@ export default function EnhancedAuditResultsPage() {
           }
         }
         setCurrentStage('complete');
-        setAuditResult(result);
+        persistAuditResult(result);
       } catch (error) {
         console.error('Enhanced Audit Results - Server action failed', error);
         console.error('Enhanced Audit Results - Error details:', {
@@ -110,7 +107,7 @@ export default function EnhancedAuditResultsPage() {
           stack: error instanceof Error ? error.stack : undefined,
           type: error instanceof Error ? error.constructor.name : 'Unknown'
         });
-        setAuditResult({
+        persistAuditResult({
           error: null,
           message: 'Failed to perform enhanced audit. Please try again later.',
           data: null,
@@ -282,7 +279,7 @@ export default function EnhancedAuditResultsPage() {
             variant="outline" 
             size="sm" 
             onClick={() => {
-              setAuditResult({ error: null, message: null, data: null });
+              clearAuditResult();
               setIsLoading(false);
               setCurrentStage('cloudflare');
             }}

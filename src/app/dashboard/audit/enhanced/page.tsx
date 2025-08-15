@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
@@ -11,8 +11,10 @@ import {
   Brain, 
   Globe,
   ArrowRight,
-  Zap
+  Zap,
+  FileText
 } from 'lucide-react';
+import { useAuditPersistence } from '@/hooks/use-audit-persistence';
 
 interface UserAgent {
   value: string;
@@ -52,6 +54,7 @@ const userAgents = [
 
 export default function EnhancedAuditPage() {
   const router = useRouter();
+  const { auditResult, clearAuditResult } = useAuditPersistence();
   const [selectedUserAgent, setSelectedUserAgent] = useState('llm-comprehensive');
   const [url, setUrl] = useState('');
   const [errors, setErrors] = useState<{url?: string[]}>({});
@@ -79,6 +82,55 @@ export default function EnhancedAuditPage() {
   return (
     <main className="flex flex-1 h-full p-6">
       <div className="w-full max-w-[1600px] mx-auto">
+        {/* Show existing audit results if available */}
+        {auditResult.data && (
+          <div className="mb-8 p-6 rounded-lg bg-muted/50 dark:bg-gray-800/50 border border-border/50 dark:border-gray-600/50">
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-xl font-semibold text-foreground dark:text-gray-100">
+                Previous Audit Results Available
+              </h2>
+              <div className="flex items-center gap-2">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => router.push('/dashboard/audit/enhanced/results')}
+                  className="hover:bg-primary/10"
+                >
+                  <FileText className="h-4 w-4 mr-2" />
+                  View Results
+                </Button>
+                <Button
+                  variant="destructive"
+                  size="sm"
+                  onClick={clearAuditResult}
+                >
+                  Clear Results
+                </Button>
+              </div>
+            </div>
+            <div className="grid grid-cols-3 gap-4 text-sm">
+              <div>
+                <span className="font-medium text-muted-foreground dark:text-gray-400">Score:</span>
+                <div className="text-2xl font-bold text-primary">
+                  {auditResult.data.overall_score}/100
+                </div>
+              </div>
+              <div>
+                <span className="font-medium text-muted-foreground dark:text-gray-400">Verdict:</span>
+                <div className="text-lg font-semibold">
+                  {auditResult.data.verdict}
+                </div>
+              </div>
+              <div>
+                <span className="font-medium text-muted-foreground dark:text-gray-400">Categories:</span>
+                <div className="text-lg font-semibold">
+                  {Object.keys(auditResult.data.categories || {}).length} analyzed
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
         <div className="grid grid-cols-12 gap-8">
           {/* Left Section - Header */}
           <div className="col-span-4 flex flex-col justify-center">
