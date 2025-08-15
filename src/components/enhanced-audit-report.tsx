@@ -495,10 +495,10 @@ export function EnhancedAuditReport({ result, url, userAgent }: EnhancedAuditRep
         {/* Categories Tab */}
         <TabsContent value="categories" className="space-y-6">
           {categoryEntries.map(([key, category]) => (
-            <Card key={key} className={`shadow-md border-l-4 ${getStatusColor(category.status)}`}>
+            <Card key={key} className={`shadow-md border-l-4 ${getStatusColor(category.status)} bg-card dark:bg-gray-900/50 border dark:border-gray-700`}>
               <CardHeader>
                 <div className="flex items-center justify-between">
-                  <CardTitle className="flex items-center gap-3">
+                  <CardTitle className="flex items-center gap-3 text-foreground dark:text-gray-100">
                     {getCategoryIcon(key)}
                     {category.name}
                   </CardTitle>
@@ -519,13 +519,13 @@ export function EnhancedAuditReport({ result, url, userAgent }: EnhancedAuditRep
                 {/* Individual Checks */}
                 <div className="space-y-3">
                   {category.checks.map((check, index) => (
-                    <div key={index} className={`p-3 rounded-lg border ${getStatusColor(check.status)}`}>
+                    <div key={index} className={`p-3 rounded-lg border ${getStatusColor(check.status)} bg-muted/30 dark:bg-gray-800/50 dark:border-gray-600`}>
                       <div className="flex items-start justify-between">
                         <div className="flex items-start gap-3 flex-1">
                           {getStatusIcon(check.status)}
                           <div>
-                            <h5 className="font-medium">{check.name}</h5>
-                            <p className="text-sm text-muted-foreground mt-1">{check.message}</p>
+                            <h5 className="font-medium text-foreground dark:text-gray-100">{check.name}</h5>
+                            <p className="text-sm text-muted-foreground dark:text-gray-300 mt-1">{check.message}</p>
                           </div>
                         </div>
                         <Badge variant="outline" className={getImpactColor(check.impact)}>
@@ -539,13 +539,13 @@ export function EnhancedAuditReport({ result, url, userAgent }: EnhancedAuditRep
                 {/* Recommendations */}
                 {category.recommendations.length > 0 && (
                   <div className="mt-4">
-                    <h4 className="font-semibold mb-3 flex items-center gap-2">
+                    <h4 className="font-semibold mb-3 flex items-center gap-2 text-foreground dark:text-gray-100">
                       <Target className="h-4 w-4 text-primary" />
                       Recommendations
                     </h4>
                     <ul className="space-y-2">
                       {category.recommendations.map((rec, index) => (
-                        <li key={index} className="flex items-start gap-2 text-sm">
+                        <li key={index} className="flex items-start gap-2 text-sm text-foreground dark:text-gray-200">
                           <CheckCircle2 className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
                           <span>{rec}</span>
                         </li>
@@ -561,10 +561,10 @@ export function EnhancedAuditReport({ result, url, userAgent }: EnhancedAuditRep
         {/* Priority Fixes Tab */}
         <TabsContent value="priority" className="space-y-4">
           {result.priority_fixes.map((fix, index) => (
-            <Card key={index} className="shadow-md">
+            <Card key={index} className="shadow-md bg-card dark:bg-gray-900/50 border dark:border-gray-700">
               <CardHeader>
                 <div className="flex items-start justify-between">
-                  <CardTitle className="text-lg">{fix.title}</CardTitle>
+                  <CardTitle className="text-lg text-foreground dark:text-gray-100">{fix.title}</CardTitle>
                   <div className="flex gap-2">
                     <Badge variant="outline" className={getImpactColor(fix.impact)}>
                       {fix.impact} impact
@@ -576,14 +576,14 @@ export function EnhancedAuditReport({ result, url, userAgent }: EnhancedAuditRep
                 </div>
               </CardHeader>
               <CardContent>
-                <p className="text-muted-foreground mb-4">{fix.description}</p>
+                <p className="text-muted-foreground dark:text-gray-300 mb-4">{fix.description}</p>
                 {fix.code_example && (
-                  <div className="bg-muted p-4 rounded-lg">
-                    <h5 className="font-medium mb-2 flex items-center gap-2">
+                  <div className="bg-muted dark:bg-gray-800/50 p-4 rounded-lg border dark:border-gray-600">
+                    <h5 className="font-medium mb-2 flex items-center gap-2 text-foreground dark:text-gray-100">
                       <Code className="h-4 w-4" />
                       Code Example
                     </h5>
-                    <pre className="text-sm whitespace-pre-wrap break-words">
+                    <pre className="text-sm whitespace-pre-wrap break-words text-foreground dark:text-gray-200">
                       <code>{fix.code_example}</code>
                     </pre>
                   </div>
@@ -595,9 +595,9 @@ export function EnhancedAuditReport({ result, url, userAgent }: EnhancedAuditRep
 
         {/* Strengths Tab */}
         <TabsContent value="strengths" className="space-y-4">
-          <Card className="shadow-md border-l-4 border-l-green-500">
+          <Card className="shadow-md border-l-4 border-l-green-500 bg-card dark:bg-gray-900/50 border dark:border-gray-700">
             <CardHeader>
-              <CardTitle className="flex items-center gap-3 text-green-700">
+              <CardTitle className="flex items-center gap-3 text-green-700 dark:text-green-400">
                 <Award className="h-6 w-6" />
                 What Your Content Does Well
               </CardTitle>
@@ -605,7 +605,7 @@ export function EnhancedAuditReport({ result, url, userAgent }: EnhancedAuditRep
             <CardContent>
               <ul className="space-y-3">
                 {result.strengths.map((strength, index) => (
-                  <li key={index} className="flex items-start gap-3">
+                  <li key={index} className="flex items-start gap-3 text-foreground dark:text-gray-200">
                     <CheckCircle2 className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
                     <span>{strength}</span>
                   </li>
@@ -617,9 +617,9 @@ export function EnhancedAuditReport({ result, url, userAgent }: EnhancedAuditRep
 
         {/* Opportunities Tab */}
         <TabsContent value="opportunities" className="space-y-4">
-          <Card className="shadow-md border-l-4 border-l-blue-500">
+          <Card className="shadow-md border-l-4 border-l-blue-500 bg-card dark:bg-gray-900/50 border dark:border-gray-700">
             <CardHeader>
-              <CardTitle className="flex items-center gap-3 text-blue-700">
+              <CardTitle className="flex items-center gap-3 text-blue-700 dark:text-blue-400">
                 <TrendingUp className="h-6 w-6" />
                 Growth Opportunities
               </CardTitle>
@@ -627,7 +627,7 @@ export function EnhancedAuditReport({ result, url, userAgent }: EnhancedAuditRep
             <CardContent>
               <ul className="space-y-3">
                 {result.opportunities.map((opportunity, index) => (
-                  <li key={index} className="flex items-start gap-3">
+                  <li key={index} className="flex items-start gap-3 text-foreground dark:text-gray-200">
                     <Target className="h-5 w-5 text-blue-500 mt-0.5 flex-shrink-0" />
                     <span>{opportunity}</span>
                   </li>
@@ -639,7 +639,7 @@ export function EnhancedAuditReport({ result, url, userAgent }: EnhancedAuditRep
       </Tabs>
 
       {/* Action Buttons */}
-      <Card className="shadow-md">
+      <Card className="shadow-md bg-card dark:bg-gray-900/50 border dark:border-gray-700">
         <CardContent className="pt-6">
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild className="btn-gradient">
