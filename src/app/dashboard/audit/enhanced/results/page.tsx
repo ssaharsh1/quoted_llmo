@@ -31,7 +31,7 @@ export default function EnhancedAuditResultsPage() {
   const userAgent = userAgentParam || latestUserAgent || 'gptbot';
 
   useEffect(() => {
-    console.log('Enhanced Audit Results - Component mounted', { url, userAgent });
+    console.log('Enhanced Audit Results - Component mounted', { urlParam, latestUrl, userAgentParam, latestUserAgent });
     
     if (!url) {
       // If no URL anywhere, go back to form
@@ -39,11 +39,15 @@ export default function EnhancedAuditResultsPage() {
       return;
     }
 
-
-
-    // Check if we already have results for this URL and userAgent
-    if (auditResult.data && !isLoading) {
-      console.log('Enhanced Audit Results - Already have results, skipping audit');
+    // If we have a persisted result and either:
+    // - There are no URL params (user navigated back to results), or
+    // - The URL/userAgent match the persisted ones
+    const hasPersisted = !!auditResult.data;
+    const isSameAsPersisted = hasPersisted && latestUrl === url && (latestUserAgent || 'gptbot') === (userAgent || 'gptbot');
+    if (hasPersisted && (!urlParam || isSameAsPersisted)) {
+      console.log('Enhanced Audit Results - Using persisted result, not re-running audit');
+      setIsLoading(false);
+      setCurrentStage('complete');
       return;
     }
 
@@ -71,9 +75,11 @@ export default function EnhancedAuditResultsPage() {
           throw new Error('enhancedAuditUrlAction is not a function');
         }
         
-        // Simulate progress updates
-        setTimeout(() => setCurrentStage('ai-eval'), 2000);
-        setTimeout(() => setCurrentStage('report'), 4000);
+        // Simulate progress updates only when beginning a run
+        if (isLoading) {
+          setTimeout(() => setCurrentStage('ai-eval'), 2000);
+          setTimeout(() => setCurrentStage('report'), 4000);
+        }
         
         const result = await enhancedAuditUrlAction(auditResult, formData);
         console.log('Enhanced Audit Results - Server action completed', result);
