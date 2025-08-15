@@ -50,24 +50,120 @@ const CloudflareWorkerResponseSchema = z.object({
     hasBibliography: z.boolean(),
   }),
   aiAccessibility: z.object({
-    robotsAllowsAI: z.boolean(),
-    hasLLMsTxt: z.boolean(),
-    hasStructuredData: z.boolean(),
-    hasProperHeadings: z.boolean(),
-    hasAuthorInfo: z.boolean(),
-    hasMetaDescription: z.boolean(),
+    robotsAllowsAI: z.any().transform((val) => {
+      if (val === undefined || val === null) return false;
+      if (typeof val === 'string') {
+        return val === 'true' || val === '1' || val === 'yes' || val.length > 0;
+      }
+      return Boolean(val);
+    }).optional().default(false),
+    hasLLMsTxt: z.any().transform((val) => {
+      if (val === undefined || val === null) return false;
+      if (typeof val === 'string') {
+        return val === 'true' || val === '1' || val === 'yes' || val.length > 0;
+      }
+      return Boolean(val);
+    }).optional().default(false),
+    hasStructuredData: z.any().transform((val) => {
+      if (val === undefined || val === null) return false;
+      if (typeof val === 'string') {
+        return val === 'true' || val === '1' || val === 'yes' || val.length > 0;
+      }
+      return Boolean(val);
+    }).optional().default(false),
+    hasProperHeadings: z.any().transform((val) => {
+      if (val === undefined || val === null) return false;
+      if (typeof val === 'string') {
+        return val === 'true' || val === '1' || val === 'yes' || val.length > 0;
+      }
+      return Boolean(val);
+    }).optional().default(false),
+    hasAuthorInfo: z.any().transform((val) => {
+      if (val === undefined || val === null) return false;
+      if (typeof val === 'string') {
+        return val === 'true' || val === '1' || val === 'yes' || val.length > 0;
+      }
+      return Boolean(val);
+    }).optional().default(false),
+    hasMetaDescription: z.any().transform((val) => {
+      if (val === undefined || val === null) return false;
+      if (typeof val === 'string') {
+        return val === 'true' || val === '1' || val === 'yes' || val.length > 0;
+      }
+      return Boolean(val);
+    }).optional().default(false),
   }),
   llmoAnalysis: z.object({
-    hasArticleSchema: z.boolean(),
-    hasPersonSchema: z.boolean(),
-    hasBreadcrumbSchema: z.boolean(),
-    hasFAQSchema: z.boolean(),
-    hasHowToSchema: z.boolean(),
-    hasProperMetaTags: z.boolean(),
-    hasCanonical: z.boolean(),
-    hasLanguageTag: z.boolean(),
-    contentReadability: z.boolean(),
-    hasCitations: z.boolean(),
+    hasArticleSchema: z.any().transform((val) => {
+      if (val === undefined || val === null) return false;
+      if (typeof val === 'string') {
+        return val === 'true' || val === '1' || val === 'yes' || val.length > 0;
+      }
+      return Boolean(val);
+    }).optional().default(false),
+    hasPersonSchema: z.any().transform((val) => {
+      if (val === undefined || val === null) return false;
+      if (typeof val === 'string') {
+        return val === 'true' || val === '1' || val === 'yes' || val.length > 0;
+      }
+      return Boolean(val);
+    }).optional().default(false),
+    hasBreadcrumbSchema: z.any().transform((val) => {
+      if (val === undefined || val === null) return false;
+      if (typeof val === 'string') {
+        return val === 'true' || val === '1' || val === 'yes' || val.length > 0;
+      }
+      return Boolean(val);
+    }).optional().default(false),
+    hasFAQSchema: z.any().transform((val) => {
+      if (val === undefined || val === null) return false;
+      if (typeof val === 'string') {
+        return val === 'true' || val === '1' || val === 'yes' || val.length > 0;
+      }
+      return Boolean(val);
+    }).optional().default(false),
+    hasHowToSchema: z.any().transform((val) => {
+      if (val === undefined || val === null) return false;
+      if (typeof val === 'string') {
+        return val === 'true' || val === '1' || val === 'yes' || val.length > 0;
+      }
+      return Boolean(val);
+    }).optional().default(false),
+    hasProperMetaTags: z.any().transform((val) => {
+      if (val === undefined || val === null) return false;
+      if (typeof val === 'string') {
+        return val === 'true' || val === '1' || val === 'yes' || val.length > 0;
+      }
+      return Boolean(val);
+    }).optional().default(false),
+    hasCanonical: z.any().transform((val) => {
+      if (val === undefined || val === null) return false;
+      if (typeof val === 'string') {
+        return val === 'true' || val === '1' || val === 'yes' || val.length > 0;
+      }
+      return Boolean(val);
+    }).optional().default(false),
+    hasLanguageTag: z.any().transform((val) => {
+      if (val === undefined || val === null) return false;
+      if (typeof val === 'string') {
+        return val === 'true' || val === '1' || val === 'yes' || val.length > 0;
+      }
+      return Boolean(val);
+    }).optional().default(false),
+    contentReadability: z.any().transform((val) => {
+      if (val === undefined || val === null) return false;
+      if (typeof val === 'string') {
+        return val === 'true' || val === '1' || val === 'yes' || val.length > 0;
+      }
+      return Boolean(val);
+    }).optional().default(false),
+    hasCitations: z.any().transform((val) => {
+      if (val === undefined || val === null) return false;
+      if (typeof val === 'string') {
+        return val === 'true' || val === '1' || val === 'yes' || val.length > 0;
+      }
+      return Boolean(val);
+    }).optional().default(false),
   }),
 });
 
